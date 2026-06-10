@@ -49,7 +49,9 @@ function ImageResize() {
     setWidth(value);
 
     if (keepRatio && originalWidth && originalHeight) {
-      const newHeight = Math.round((Number(value) * originalHeight) / originalWidth);
+      const newHeight = Math.round(
+        (Number(value) * originalHeight) / originalWidth
+      );
       setHeight(newHeight);
     }
   };
@@ -58,7 +60,9 @@ function ImageResize() {
     setHeight(value);
 
     if (keepRatio && originalWidth && originalHeight) {
-      const newWidth = Math.round((Number(value) * originalWidth) / originalHeight);
+      const newWidth = Math.round(
+        (Number(value) * originalWidth) / originalHeight
+      );
       setWidth(newWidth);
     }
   };
@@ -113,167 +117,203 @@ function ImageResize() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-5 py-10 relative">
+    <>
       <Helmet>
-        <title>Free Image Resize Tool Online | ToolNest</title>
+        <title>
+          Image Resizer Online | Resize JPG, PNG & WebP Images | ToolNest
+        </title>
+
         <meta
           name="description"
-          content="Resize JPG, PNG and WebP images online with custom width and height. Free browser-based image resizer."
+          content="Resize JPG, PNG and WebP images online for free with ToolNest. Change image dimensions, maintain aspect ratio, use social media presets and download instantly."
+        />
+
+        <meta
+          name="keywords"
+          content="Image Resizer, Resize Image Online, JPG Resizer, PNG Resizer, WebP Resizer, Change Image Size, Image Dimensions Tool, ToolNest"
+        />
+
+        <link
+          rel="canonical"
+          href="https://tools.nihalusaidh.com/image-resize"
         />
       </Helmet>
 
-      {success && (
-        <div className="fixed top-5 right-5 bg-green-600 text-white px-6 py-4 rounded-xl shadow-lg z-50">
-          Image resized successfully!
+      <div className="max-w-6xl mx-auto px-5 py-10 relative">
+        {success && (
+          <div className="fixed top-5 right-5 bg-green-600 text-white px-6 py-4 rounded-xl shadow-lg z-50">
+            Image resized successfully!
+          </div>
+        )}
+
+        <div className="text-center mb-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">
+            Image Resize Tool
+          </h1>
+
+          <p className="text-slate-600 text-lg">
+            Resize JPG, PNG and WebP images to custom dimensions. Perfect for
+            social media posts, profile pictures, websites, assignments and
+            document uploads.
+          </p>
         </div>
-      )}
 
-      <div className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-bold mb-3">
-          Image Resize Tool
-        </h1>
+        <div className="grid lg:grid-cols-2 gap-6">
+          <div className="bg-white p-6 rounded-2xl shadow-sm border">
+            <h2 className="text-2xl font-bold mb-5">Upload Image</h2>
 
-        <p className="text-slate-600 text-lg">
-          Resize images to custom dimensions instantly.
-        </p>
-      </div>
+            <label
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragActive(true);
+              }}
+              onDragLeave={() => setDragActive(false)}
+              onDrop={handleDrop}
+              className={`flex flex-col items-center justify-center border-2 border-dashed rounded-2xl p-10 cursor-pointer transition ${
+                dragActive
+                  ? "border-blue-600 bg-blue-50"
+                  : "border-slate-300 bg-slate-50"
+              }`}
+            >
+              <span className="text-5xl mb-3">📐</span>
 
-      <div className="grid lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-2xl shadow-sm border">
-          <h2 className="text-2xl font-bold mb-5">Upload Image</h2>
+              <p className="text-lg font-semibold">
+                Drag and drop your image here
+              </p>
 
-          <label
-            onDragOver={(e) => {
-              e.preventDefault();
-              setDragActive(true);
-            }}
-            onDragLeave={() => setDragActive(false)}
-            onDrop={handleDrop}
-            className={`flex flex-col items-center justify-center border-2 border-dashed rounded-2xl p-10 cursor-pointer transition ${
-              dragActive
-                ? "border-blue-600 bg-blue-50"
-                : "border-slate-300 bg-slate-50"
-            }`}
-          >
-            <span className="text-5xl mb-3">📐</span>
+              <p className="text-slate-500 mt-1">or click to upload</p>
 
-            <p className="text-lg font-semibold">
-              Drag and drop your image here
-            </p>
+              <p className="text-sm text-slate-400 mt-3">
+                JPG, PNG, WebP supported • Max 20 MB
+              </p>
 
-            <p className="text-slate-500 mt-1">or click to upload</p>
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => handleFile(e.target.files[0])}
+              />
+            </label>
 
-            <p className="text-sm text-slate-400 mt-3">
-              JPG, PNG, WebP supported • Max 20 MB
-            </p>
+            {previewUrl && (
+              <div className="mt-6">
+                <h3 className="font-bold mb-3">Preview</h3>
 
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={(e) => handleFile(e.target.files[0])}
-            />
-          </label>
+                <img
+                  src={previewUrl}
+                  alt="Preview"
+                  className="max-h-72 w-full object-contain rounded-xl bg-slate-50 border"
+                />
 
-          {previewUrl && (
-            <div className="mt-6">
-              <h3 className="font-bold mb-3">Preview</h3>
+                <p className="text-sm text-slate-600 mt-3">
+                  Original size: {originalWidth} × {originalHeight}px
+                </p>
+              </div>
+            )}
+          </div>
 
-              <img
-                src={previewUrl}
-                alt="Preview"
-                className="max-h-72 w-full object-contain rounded-xl bg-slate-50 border"
+          <div className="bg-white p-6 rounded-2xl shadow-sm border">
+            <h2 className="text-2xl font-bold mb-5">Resize Settings</h2>
+
+            <label className="flex items-center gap-2 mb-5">
+              <input
+                type="checkbox"
+                checked={keepRatio}
+                onChange={(e) => setKeepRatio(e.target.checked)}
+              />
+              Keep aspect ratio
+            </label>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              <input
+                type="number"
+                placeholder="Width"
+                className="border p-3 rounded"
+                value={width}
+                onChange={(e) => handleWidthChange(e.target.value)}
               />
 
-              <p className="text-sm text-slate-600 mt-3">
-                Original size: {originalWidth} × {originalHeight}px
-              </p>
+              <input
+                type="number"
+                placeholder="Height"
+                className="border p-3 rounded"
+                value={height}
+                onChange={(e) => handleHeightChange(e.target.value)}
+              />
             </div>
-          )}
+
+            <h3 className="font-bold mt-6 mb-3">Quick Presets</h3>
+
+            <div className="grid md:grid-cols-2 gap-3">
+              <button
+                onClick={() => setPreset(1080, 1080)}
+                className="border p-3 rounded-xl hover:bg-blue-50"
+              >
+                Instagram Post 1080×1080
+              </button>
+
+              <button
+                onClick={() => setPreset(1080, 1920)}
+                className="border p-3 rounded-xl hover:bg-blue-50"
+              >
+                Instagram Story 1080×1920
+              </button>
+
+              <button
+                onClick={() => setPreset(1280, 720)}
+                className="border p-3 rounded-xl hover:bg-blue-50"
+              >
+                YouTube Thumbnail 1280×720
+              </button>
+
+              <button
+                onClick={() => setPreset(1920, 1080)}
+                className="border p-3 rounded-xl hover:bg-blue-50"
+              >
+                HD 1920×1080
+              </button>
+            </div>
+
+            <button
+              onClick={resizeImage}
+              disabled={loading}
+              className="mt-6 w-full bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 disabled:opacity-60"
+            >
+              {loading ? "Resizing..." : "Resize Image"}
+            </button>
+
+            {downloadUrl && (
+              <a
+                href={downloadUrl}
+                download="resized-image"
+                className="block text-center mt-4 bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700"
+              >
+                Download Resized Image
+              </a>
+            )}
+          </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border">
-          <h2 className="text-2xl font-bold mb-5">Resize Settings</h2>
+        <section className="mt-12 bg-white border rounded-2xl p-6 shadow-sm">
+          <h2 className="text-2xl font-bold mb-4">
+            Free Online Image Resizer
+          </h2>
 
-          <label className="flex items-center gap-2 mb-5">
-            <input
-              type="checkbox"
-              checked={keepRatio}
-              onChange={(e) => setKeepRatio(e.target.checked)}
-            />
-            Keep aspect ratio
-          </label>
+          <p className="text-slate-600 leading-7 mb-4">
+            ToolNest Image Resizer allows you to resize JPG, PNG and WebP
+            images quickly without installing any software. Enter custom width
+            and height values or use built-in presets for Instagram posts,
+            stories, YouTube thumbnails and HD images.
+          </p>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            <input
-              type="number"
-              placeholder="Width"
-              className="border p-3 rounded"
-              value={width}
-              onChange={(e) => handleWidthChange(e.target.value)}
-            />
-
-            <input
-              type="number"
-              placeholder="Height"
-              className="border p-3 rounded"
-              value={height}
-              onChange={(e) => handleHeightChange(e.target.value)}
-            />
-          </div>
-
-          <h3 className="font-bold mt-6 mb-3">Quick Presets</h3>
-
-          <div className="grid md:grid-cols-2 gap-3">
-            <button
-              onClick={() => setPreset(1080, 1080)}
-              className="border p-3 rounded-xl hover:bg-blue-50"
-            >
-              Instagram Post 1080×1080
-            </button>
-
-            <button
-              onClick={() => setPreset(1080, 1920)}
-              className="border p-3 rounded-xl hover:bg-blue-50"
-            >
-              Instagram Story 1080×1920
-            </button>
-
-            <button
-              onClick={() => setPreset(1280, 720)}
-              className="border p-3 rounded-xl hover:bg-blue-50"
-            >
-              YouTube Thumbnail 1280×720
-            </button>
-
-            <button
-              onClick={() => setPreset(1920, 1080)}
-              className="border p-3 rounded-xl hover:bg-blue-50"
-            >
-              HD 1920×1080
-            </button>
-          </div>
-
-          <button
-            onClick={resizeImage}
-            disabled={loading}
-            className="mt-6 w-full bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 disabled:opacity-60"
-          >
-            {loading ? "Resizing..." : "Resize Image"}
-          </button>
-
-          {downloadUrl && (
-            <a
-              href={downloadUrl}
-              download="resized-image"
-              className="block text-center mt-4 bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700"
-            >
-              Download Resized Image
-            </a>
-          )}
-        </div>
+          <p className="text-slate-600 leading-7">
+            Enable aspect ratio lock to maintain image proportions
+            automatically. Upload your image, choose the desired dimensions and
+            download the resized image instantly.
+          </p>
+        </section>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -92,127 +92,166 @@ function ImageConverter() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-5 py-10 relative">
+    <>
       <Helmet>
-        <title>Free Image Converter Online | ToolNest</title>
+        <title>
+          Image Converter Online | Convert JPG, PNG & WebP | ToolNest
+        </title>
+
         <meta
           name="description"
-          content="Convert JPG, PNG and WebP images online for free using a fast browser-based image converter."
+          content="Convert images online for free with ToolNest. Convert JPG to PNG, PNG to JPG, WebP to JPG and more directly in your browser."
+        />
+
+        <meta
+          name="keywords"
+          content="Image Converter, JPG to PNG, PNG to JPG, WebP to JPG, JPG to WebP, PNG to WebP, Online Image Converter, ToolNest"
+        />
+
+        <link
+          rel="canonical"
+          href="https://tools.nihalusaidh.com/image-converter"
         />
       </Helmet>
 
-      {success && (
-        <div className="fixed top-5 right-5 bg-green-600 text-white px-6 py-4 rounded-xl shadow-lg z-50">
-          Image converted successfully!
-        </div>
-      )}
+      <div className="max-w-6xl mx-auto px-5 py-10 relative">
+        {success && (
+          <div className="fixed top-5 right-5 bg-green-600 text-white px-6 py-4 rounded-xl shadow-lg z-50">
+            Image converted successfully!
+          </div>
+        )}
 
-      <div className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-bold mb-3">
-          Universal Image Converter
-        </h1>
+        <div className="text-center mb-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">
+            Universal Image Converter
+          </h1>
 
-        <p className="text-slate-600 text-lg">
-          Convert JPG, PNG and WebP images instantly in your browser.
-        </p>
-      </div>
-
-      <div className="grid lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-2xl shadow-sm border">
-          <h2 className="text-2xl font-bold mb-5">Upload Image</h2>
-
-          <label
-            onDragOver={(e) => {
-              e.preventDefault();
-              setDragActive(true);
-            }}
-            onDragLeave={() => setDragActive(false)}
-            onDrop={handleDrop}
-            className={`flex flex-col items-center justify-center border-2 border-dashed rounded-2xl p-10 cursor-pointer transition ${
-              dragActive
-                ? "border-blue-600 bg-blue-50"
-                : "border-slate-300 bg-slate-50"
-            }`}
-          >
-            <span className="text-5xl mb-3">🖼️</span>
-
-            <p className="text-lg font-semibold">
-              Drag and drop your image here
-            </p>
-
-            <p className="text-slate-500 mt-1">or click to upload</p>
-
-            <p className="text-sm text-slate-400 mt-3">
-              JPG, PNG, WebP supported • Max 20 MB
-            </p>
-
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={(e) => handleFile(e.target.files[0])}
-            />
-          </label>
-
-          {file && (
-            <div className="mt-5 bg-slate-50 p-4 rounded-xl">
-              <p className="font-semibold">{file.name}</p>
-              <p className="text-slate-600 text-sm">
-                Size: {formatSize(file.size)}
-              </p>
-            </div>
-          )}
+          <p className="text-slate-600 text-lg">
+            Convert JPG, PNG and WebP images instantly in your browser. Choose
+            your output format and download the converted image in seconds.
+          </p>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border">
-          <h2 className="text-2xl font-bold mb-5">Convert Settings</h2>
+        <div className="grid lg:grid-cols-2 gap-6">
+          <div className="bg-white p-6 rounded-2xl shadow-sm border">
+            <h2 className="text-2xl font-bold mb-5">Upload Image</h2>
 
-          <label className="font-medium">Output Format</label>
-
-          <select
-            className="border p-3 rounded w-full mt-2"
-            value={outputFormat}
-            onChange={(e) => {
-              setOutputFormat(e.target.value);
-              setDownloadUrl("");
-            }}
-          >
-            <option value="png">PNG</option>
-            <option value="jpeg">JPG</option>
-            <option value="webp">WEBP</option>
-          </select>
-
-          <button
-            onClick={convertImage}
-            disabled={loading}
-            className="mt-5 w-full bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 disabled:opacity-60"
-          >
-            {loading ? "Converting..." : "Convert Image"}
-          </button>
-
-          {downloadUrl && (
-            <a
-              href={downloadUrl}
-              download={`converted.${outputFormat === "jpeg" ? "jpg" : outputFormat}`}
-              className="block text-center mt-4 bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700"
+            <label
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragActive(true);
+              }}
+              onDragLeave={() => setDragActive(false)}
+              onDrop={handleDrop}
+              className={`flex flex-col items-center justify-center border-2 border-dashed rounded-2xl p-10 cursor-pointer transition ${
+                dragActive
+                  ? "border-blue-600 bg-blue-50"
+                  : "border-slate-300 bg-slate-50"
+              }`}
             >
-              Download Converted Image
-            </a>
-          )}
+              <span className="text-5xl mb-3">🖼️</span>
 
-          {previewUrl && (
-            <div className="mt-6">
-              <h3 className="font-bold mb-3">Preview</h3>
-              <img
-                src={previewUrl}
-                alt="Preview"
-                className="max-h-72 w-full object-contain rounded-xl bg-slate-50 border"
+              <p className="text-lg font-semibold">
+                Drag and drop your image here
+              </p>
+
+              <p className="text-slate-500 mt-1">or click to upload</p>
+
+              <p className="text-sm text-slate-400 mt-3">
+                JPG, PNG, WebP supported • Max 20 MB
+              </p>
+
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => handleFile(e.target.files[0])}
               />
-            </div>
-          )}
+            </label>
+
+            {file && (
+              <div className="mt-5 bg-slate-50 p-4 rounded-xl">
+                <p className="font-semibold">{file.name}</p>
+
+                <p className="text-slate-600 text-sm">
+                  Size: {formatSize(file.size)}
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl shadow-sm border">
+            <h2 className="text-2xl font-bold mb-5">Convert Settings</h2>
+
+            <label className="font-medium">Output Format</label>
+
+            <select
+              className="border p-3 rounded w-full mt-2"
+              value={outputFormat}
+              onChange={(e) => {
+                setOutputFormat(e.target.value);
+                setDownloadUrl("");
+              }}
+            >
+              <option value="png">PNG</option>
+              <option value="jpeg">JPG</option>
+              <option value="webp">WEBP</option>
+            </select>
+
+            <button
+              onClick={convertImage}
+              disabled={loading}
+              className="mt-5 w-full bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 disabled:opacity-60"
+            >
+              {loading ? "Converting..." : "Convert Image"}
+            </button>
+
+            {downloadUrl && (
+              <a
+                href={downloadUrl}
+                download={`converted.${
+                  outputFormat === "jpeg" ? "jpg" : outputFormat
+                }`}
+                className="block text-center mt-4 bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700"
+              >
+                Download Converted Image
+              </a>
+            )}
+
+            {previewUrl && (
+              <div className="mt-6">
+                <h3 className="font-bold mb-3">Preview</h3>
+
+                <img
+                  src={previewUrl}
+                  alt="Preview"
+                  className="max-h-72 w-full object-contain rounded-xl bg-slate-50 border"
+                />
+              </div>
+            )}
+          </div>
         </div>
+
+        <section className="mt-12 bg-white border rounded-2xl p-6 shadow-sm">
+          <h2 className="text-2xl font-bold mb-4">
+            Free Online Image Converter
+          </h2>
+
+          <p className="text-slate-600 leading-7 mb-4">
+            ToolNest Image Converter helps you convert images between popular
+            formats such as JPG, PNG and WebP. It is useful when a website,
+            form, assignment portal or social media platform requires a
+            specific image format.
+          </p>
+
+          <p className="text-slate-600 leading-7">
+            Upload your image, select the output format, and convert it
+            instantly. The conversion happens directly in your browser, making
+            the tool fast and simple to use.
+          </p>
+        </section>
       </div>
-    </div>
+    </>
   );
 }
 

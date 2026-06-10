@@ -119,122 +119,163 @@ function RemovePdfPages() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-5 py-10 relative">
+    <>
       <Helmet>
-        <title>Remove PDF Pages Online Free | ToolNest</title>
+        <title>
+          Remove PDF Pages Online Free | Delete Pages from PDF | ToolNest
+        </title>
+
         <meta
           name="description"
-          content="Remove unwanted pages from a PDF online for free. Upload a PDF, enter page numbers, and download the cleaned PDF."
+          content="Remove unwanted pages from PDF files online for free. Delete specific pages or page ranges and download a new PDF instantly using ToolNest."
+        />
+
+        <meta
+          name="keywords"
+          content="Remove PDF Pages, Delete PDF Pages, PDF Page Remover, Remove Pages from PDF Online, Edit PDF, PDF Tools, ToolNest"
+        />
+
+        <link
+          rel="canonical"
+          href="https://tools.nihalusaidh.com/remove-pdf-pages"
         />
       </Helmet>
 
-      {success && (
-        <div className="fixed top-5 right-5 bg-green-600 text-white px-6 py-4 rounded-xl shadow-lg z-50">
-          Pages removed successfully!
+      <div className="max-w-6xl mx-auto px-5 py-10 relative">
+        {success && (
+          <div className="fixed top-5 right-5 bg-green-600 text-white px-6 py-4 rounded-xl shadow-lg z-50">
+            Pages removed successfully!
+          </div>
+        )}
+
+        <div className="text-center mb-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">
+            Remove PDF Pages Online
+          </h1>
+
+          <p className="text-slate-600 text-lg">
+            Delete unwanted pages from your PDF file quickly and securely.
+            Remove individual pages or page ranges and download a cleaned PDF
+            document.
+          </p>
         </div>
-      )}
 
-      <div className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-bold mb-3">
-          Remove PDF Pages
-        </h1>
+        <div className="grid lg:grid-cols-2 gap-6">
+          <div className="bg-white p-6 rounded-2xl shadow-sm border">
+            <h2 className="text-2xl font-bold mb-5">Upload PDF</h2>
 
-        <p className="text-slate-600 text-lg">
-          Delete unwanted pages from your PDF file.
-        </p>
-      </div>
+            <label
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragActive(true);
+              }}
+              onDragLeave={() => setDragActive(false)}
+              onDrop={handleDrop}
+              className={`flex flex-col items-center justify-center border-2 border-dashed rounded-2xl p-14 cursor-pointer transition ${
+                dragActive
+                  ? "border-blue-600 bg-blue-50"
+                  : "border-slate-300 bg-slate-50"
+              }`}
+            >
+              <span className="text-5xl mb-3">🗑️</span>
 
-      <div className="grid lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-2xl shadow-sm border">
-          <h2 className="text-2xl font-bold mb-5">Upload PDF</h2>
+              <p className="text-lg font-semibold">Drag and drop PDF here</p>
 
-          <label
-            onDragOver={(e) => {
-              e.preventDefault();
-              setDragActive(true);
-            }}
-            onDragLeave={() => setDragActive(false)}
-            onDrop={handleDrop}
-            className={`flex flex-col items-center justify-center border-2 border-dashed rounded-2xl p-14 cursor-pointer transition ${
-              dragActive
-                ? "border-blue-600 bg-blue-50"
-                : "border-slate-300 bg-slate-50"
-            }`}
-          >
-            <span className="text-5xl mb-3">🗑️</span>
+              <p className="text-slate-500 mt-1">or click to upload</p>
 
-            <p className="text-lg font-semibold">Drag and drop PDF here</p>
+              <p className="text-sm text-slate-400 mt-3">PDF file only</p>
 
-            <p className="text-slate-500 mt-1">or click to upload</p>
+              <input
+                type="file"
+                accept="application/pdf"
+                className="hidden"
+                onChange={(e) => handleFile(e.target.files[0])}
+              />
+            </label>
 
-            <p className="text-sm text-slate-400 mt-3">PDF file only</p>
+            {file && (
+              <div className="mt-5 bg-blue-50 p-4 rounded-xl">
+                <p className="font-semibold">{file.name}</p>
+
+                <p className="text-slate-600 text-sm">
+                  Total Pages: {pageCount}
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl shadow-sm border">
+            <h2 className="text-2xl font-bold mb-5">Pages to Remove</h2>
+
+            <label className="font-medium">Enter page numbers</label>
 
             <input
-              type="file"
-              accept="application/pdf"
-              className="hidden"
-              onChange={(e) => handleFile(e.target.files[0])}
+              className="border p-3 rounded w-full mt-2"
+              placeholder="Example: 2,4,6-8"
+              value={removeRange}
+              onChange={(e) => setRemoveRange(e.target.value)}
             />
-          </label>
 
-          {file && (
-            <div className="mt-5 bg-blue-50 p-4 rounded-xl">
-              <p className="font-semibold">{file.name}</p>
-              <p className="text-slate-600 text-sm">
-                Total Pages: {pageCount}
-              </p>
-            </div>
-          )}
+            <p className="text-sm text-slate-500 mt-3">
+              Use commas for separate pages and hyphen for ranges.
+            </p>
+
+            <button
+              onClick={removePages}
+              disabled={loading}
+              className="mt-6 w-full bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 disabled:opacity-60"
+            >
+              {loading ? "Removing Pages..." : "Remove Pages"}
+            </button>
+
+            {downloadUrl && (
+              <a
+                href={downloadUrl}
+                download="pdf-with-pages-removed.pdf"
+                className="block text-center mt-4 bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700"
+              >
+                Download New PDF
+              </a>
+            )}
+
+            {downloadUrl && (
+              <div className="mt-6 bg-green-50 p-5 rounded-xl">
+                <h2 className="font-bold text-xl text-green-700">
+                  PDF Successfully Updated
+                </h2>
+
+                <p className="text-slate-600 mt-1">
+                  Selected pages were removed successfully.
+                </p>
+              </div>
+            )}
+          </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border">
-          <h2 className="text-2xl font-bold mb-5">Pages to Remove</h2>
+        <section className="mt-12 bg-white border rounded-2xl p-6 shadow-sm">
+          <h2 className="text-2xl font-bold mb-4">
+            Remove Pages from PDF Online
+          </h2>
 
-          <label className="font-medium">Enter page numbers</label>
-
-          <input
-            className="border p-3 rounded w-full mt-2"
-            placeholder="Example: 2,4,6-8"
-            value={removeRange}
-            onChange={(e) => setRemoveRange(e.target.value)}
-          />
-
-          <p className="text-sm text-slate-500 mt-3">
-            Use commas for separate pages and hyphen for ranges.
+          <p className="text-slate-600 leading-7 mb-4">
+            ToolNest Remove PDF Pages tool helps you delete unwanted pages from
+            PDF documents quickly and easily. Upload your PDF, specify page
+            numbers or page ranges, and generate a new PDF without those pages.
           </p>
 
-          <button
-            onClick={removePages}
-            disabled={loading}
-            className="mt-6 w-full bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 disabled:opacity-60"
-          >
-            {loading ? "Removing Pages..." : "Remove Pages"}
-          </button>
+          <p className="text-slate-600 leading-7 mb-4">
+            This tool is useful for removing blank pages, unwanted scans,
+            confidential information, duplicate pages, or unnecessary content
+            from PDF documents before sharing them.
+          </p>
 
-          {downloadUrl && (
-            <a
-              href={downloadUrl}
-              download="pdf-with-pages-removed.pdf"
-              className="block text-center mt-4 bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700"
-            >
-              Download New PDF
-            </a>
-          )}
-
-          {downloadUrl && (
-            <div className="mt-6 bg-green-50 p-5 rounded-xl">
-              <h2 className="font-bold text-xl text-green-700">
-                New PDF Ready
-              </h2>
-
-              <p className="text-slate-600 mt-1">
-                Selected pages were removed successfully.
-              </p>
-            </div>
-          )}
-        </div>
+          <p className="text-slate-600 leading-7">
+            Everything is processed directly in your browser. No registration,
+            software installation, or external uploads are required.
+          </p>
+        </section>
       </div>
-    </div>
+    </>
   );
 }
 

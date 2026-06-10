@@ -2,279 +2,369 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 
 function ResumeBuilder() {
-  const [template, setTemplate] = useState("classic");
-
-  const [data, setData] = useState({
+  const [form, setForm] = useState({
     name: "",
+    title: "",
     email: "",
     phone: "",
-    college: "",
-    degree: "",
     location: "",
     linkedin: "",
     github: "",
     portfolio: "",
+    summary: "",
+    education: "",
     skills: "",
     projects: "",
-    education: "",
     experience: "",
     certifications: "",
   });
 
-  const updateData = (field, value) => {
-    setData({ ...data, [field]: value });
+  const [template, setTemplate] = useState("modern");
+
+  const updateField = (field, value) => {
+    setForm({ ...form, [field]: value });
   };
 
-  const links = [
-    data.linkedin && `LinkedIn: ${data.linkedin}`,
-    data.github && `GitHub: ${data.github}`,
-    data.portfolio && `Portfolio: ${data.portfolio}`,
-  ].filter(Boolean);
-
-  const Section = ({ title, children }) => (
-    <div className="mb-4">
-      <h3 className="font-bold text-lg border-b mb-2">{title}</h3>
-      <div className="whitespace-pre-line text-slate-700">{children}</div>
-    </div>
-  );
-
-  const ResumePreview = () => {
-    if (template === "modern") {
-      return (
-        <div className="border rounded-xl overflow-hidden bg-white">
-          <div className="bg-slate-900 text-white p-6">
-            <h1 className="text-3xl font-bold">{data.name || "Your Name"}</h1>
-            <p>{data.email || "email@example.com"} | {data.phone || "Phone"}</p>
-            <p>{data.location || "Location"}</p>
-          </div>
-
-          <div className="p-6">
-            <Section title="Education">{data.education || `${data.degree}\n${data.college}`}</Section>
-            <Section title="Skills">{data.skills || "Your skills"}</Section>
-            <Section title="Projects">{data.projects || "Your projects"}</Section>
-            <Section title="Experience">{data.experience || "Your experience"}</Section>
-            <Section title="Links">{links.join("\n") || "Your links"}</Section>
-          </div>
-        </div>
-      );
-    }
-
-    if (template === "minimal") {
-      return (
-        <div className="border p-8 rounded-xl bg-white">
-          <h1 className="text-4xl font-bold">{data.name || "Your Name"}</h1>
-          <p className="text-slate-600 mt-1">
-            {data.email || "email@example.com"} | {data.phone || "Phone"} | {data.location || "Location"}
-          </p>
-          <hr className="my-5" />
-
-          <Section title="Education">{data.education || `${data.degree}\n${data.college}`}</Section>
-          <Section title="Skills">{data.skills || "Your skills"}</Section>
-          <Section title="Projects">{data.projects || "Your projects"}</Section>
-          <Section title="Certifications">{data.certifications || "Your certifications"}</Section>
-          <Section title="Links">{links.join("\n") || "Your links"}</Section>
-        </div>
-      );
-    }
-
-    if (template === "blue") {
-      return (
-        <div className="border rounded-xl bg-white p-8">
-          <h1 className="text-4xl font-bold text-blue-700">
-            {data.name || "Your Name"}
-          </h1>
-
-          <p className="text-slate-600 mt-2">
-            {data.email || "email@example.com"} | {data.phone || "Phone"} |{" "}
-            {data.location || "Location"}
-          </p>
-
-          <p className="text-blue-600 mt-1">{links.join(" | ")}</p>
-
-          <hr className="my-5 border-blue-200" />
-
-          <Section title="Education">
-            {data.education || `${data.degree}\n${data.college}`}
-          </Section>
-
-          <Section title="Skills">{data.skills || "Your skills"}</Section>
-
-          <Section title="Projects">{data.projects || "Your projects"}</Section>
-
-          <Section title="Experience">
-            {data.experience || "Your experience"}
-          </Section>
-
-          <Section title="Certifications">
-            {data.certifications || "Your certifications"}
-          </Section>
-        </div>
-      );
-    }
-
-    if (template === "sidebar") {
-      return (
-        <div className="border rounded-xl bg-white grid grid-cols-3 overflow-hidden">
-          <div className="bg-slate-800 text-white p-6 col-span-1">
-            <h1 className="text-2xl font-bold mb-4">
-              {data.name || "Your Name"}
-            </h1>
-
-            <p className="text-sm mb-2">{data.email || "email@example.com"}</p>
-            <p className="text-sm mb-2">{data.phone || "Phone"}</p>
-            <p className="text-sm mb-4">{data.location || "Location"}</p>
-
-            <h3 className="font-bold mt-5 mb-2">Links</h3>
-            <p className="text-sm whitespace-pre-line">
-              {links.join("\n") || "Your links"}
-            </p>
-
-            <h3 className="font-bold mt-5 mb-2">Skills</h3>
-            <p className="text-sm whitespace-pre-line">
-              {data.skills || "Your skills"}
-            </p>
-          </div>
-
-          <div className="p-6 col-span-2">
-            <Section title="Education">
-              {data.education || `${data.degree}\n${data.college}`}
-            </Section>
-
-            <Section title="Projects">{data.projects || "Your projects"}</Section>
-
-            <Section title="Experience">
-              {data.experience || "Your experience"}
-            </Section>
-
-            <Section title="Certifications">
-              {data.certifications || "Your certifications"}
-            </Section>
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <div className="border p-8 rounded-xl bg-slate-50">
-        <h1 className="text-3xl font-bold text-center">{data.name || "Your Name"}</h1>
-        <p className="text-center text-slate-600 mt-2">
-          {data.email || "email@example.com"} | {data.phone || "Phone"} | {data.location || "Location"}
-        </p>
-        <p className="text-center text-slate-600 mt-1">{links.join(" | ")}</p>
-
-        <hr className="my-5" />
-
-        <Section title="Career Objective">
-          Motivated student seeking opportunities to apply academic knowledge, technical skills and project experience.
-        </Section>
-
-        <Section title="Education">{data.education || `${data.degree || "Degree"}\n${data.college || "College Name"}`}</Section>
-        <Section title="Skills">{data.skills || "Your skills"}</Section>
-        <Section title="Projects">{data.projects || "Your projects"}</Section>
-        <Section title="Experience">{data.experience || "Your experience"}</Section>
-        <Section title="Certifications">{data.certifications || "Your certifications"}</Section>
-      </div>
-    );
+  const printResume = () => {
+    window.print();
   };
+
+  const sectionTitle =
+    template === "classic"
+      ? "text-lg font-bold border-b border-slate-400 mb-2"
+      : "text-lg font-bold text-blue-700 mb-2";
 
   return (
-    <div className="max-w-7xl mx-auto px-5 py-10">
+    <>
       <Helmet>
-        <title>Free Resume Builder for Students | ToolNest</title>
+        <title>
+          Resume Builder Online Free | Student Resume Maker | ToolNest
+        </title>
+
         <meta
           name="description"
-          content="Create student resumes with templates, skills, projects, education and profile links."
+          content="Create a professional resume online for free with ToolNest Resume Builder. Add education, skills, projects, experience, links and download or print your resume."
         />
+
+        <meta
+          name="keywords"
+          content="Resume Builder, Free Resume Builder, Student Resume Maker, Online Resume Builder, Resume Creator, CV Maker, ToolNest"
+        />
+
+        <link
+          rel="canonical"
+          href="https://tools.nihalusaidh.com/resume-builder"
+        />
+
+        <meta
+          property="og:title"
+          content="Free Resume Builder Online | ToolNest"
+        />
+
+        <meta
+          property="og:description"
+          content="Build a clean professional resume online with education, skills, projects, experience and links."
+        />
+
+        <meta
+          property="og:url"
+          content="https://tools.nihalusaidh.com/resume-builder"
+        />
+
+        <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
       </Helmet>
 
-      <h1 className="text-4xl font-bold mb-3">Resume Builder</h1>
-      <p className="text-slate-600 mb-8">
-        Choose a template, fill your details and preview your resume instantly.
-      </p>
+      <div className="max-w-7xl mx-auto px-5 py-10">
+        <div className="text-center mb-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">
+            Resume Builder Online
+          </h1>
 
-      <div className="grid lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-2xl shadow-sm border">
-          <h2 className="text-2xl font-bold mb-5">Enter Details</h2>
-
-          <label className="font-medium">Choose Template</label>
-          <select
-            className="border p-3 w-full mb-4 rounded mt-2"
-            value={template}
-            onChange={(e) => setTemplate(e.target.value)}
-          >
-            <option value="classic">Classic Student Resume</option>
-            <option value="modern">Modern Dark Header</option>
-            <option value="minimal">Minimal Clean Resume</option>
-            <option value="blue">Blue Professional</option>
-            <option value="sidebar">Sidebar Resume</option>
-          </select>
-
-          {[
-            ["name", "Full Name"],
-            ["email", "Email"],
-            ["phone", "Phone"],
-            ["location", "Location"],
-            ["college", "College"],
-            ["degree", "Degree / Course"],
-            ["linkedin", "LinkedIn URL"],
-            ["github", "GitHub URL"],
-            ["portfolio", "Portfolio / Website URL"],
-          ].map(([field, label]) => (
-            <input
-              key={field}
-              className="border p-3 w-full mb-3 rounded"
-              placeholder={label}
-              value={data[field]}
-              onChange={(e) => updateData(field, e.target.value)}
-            />
-          ))}
-
-          <textarea
-            className="border p-3 w-full mb-3 rounded h-24"
-            placeholder="Skills"
-            value={data.skills}
-            onChange={(e) => updateData("skills", e.target.value)}
-          />
-
-          <textarea
-            className="border p-3 w-full mb-3 rounded h-28"
-            placeholder="Projects with links"
-            value={data.projects}
-            onChange={(e) => updateData("projects", e.target.value)}
-          />
-
-          <textarea
-            className="border p-3 w-full mb-3 rounded h-28"
-            placeholder="Education"
-            value={data.education}
-            onChange={(e) => updateData("education", e.target.value)}
-          />
-
-          <textarea
-            className="border p-3 w-full mb-3 rounded h-28"
-            placeholder="Experience / Internship"
-            value={data.experience}
-            onChange={(e) => updateData("experience", e.target.value)}
-          />
-
-          <textarea
-            className="border p-3 w-full rounded h-24"
-            placeholder="Certifications"
-            value={data.certifications}
-            onChange={(e) => updateData("certifications", e.target.value)}
-          />
-        </div>
-
-        <div className="bg-white p-6 rounded-2xl shadow-sm border">
-          <h2 className="text-2xl font-bold mb-6">Resume Preview</h2>
-          <ResumePreview />
-
-          <p className="text-sm text-slate-500 mt-4">
-            More templates and PDF export will be added next.
+          <p className="text-slate-600 text-lg max-w-3xl mx-auto">
+            Create a clean professional resume for internships, placements,
+            college applications and job opportunities. Add your education,
+            skills, projects, experience and important links.
           </p>
         </div>
+
+        <div className="grid lg:grid-cols-2 gap-8">
+          <div className="bg-white p-6 rounded-2xl shadow-sm border">
+            <h2 className="text-2xl font-bold mb-5">
+              Enter Resume Details
+            </h2>
+
+            <label className="font-medium">Template Style</label>
+            <select
+              className="border p-3 rounded w-full mt-2 mb-5"
+              value={template}
+              onChange={(e) => setTemplate(e.target.value)}
+            >
+              <option value="modern">Modern Blue</option>
+              <option value="classic">Classic Black</option>
+              <option value="minimal">Minimal Clean</option>
+            </select>
+
+            <div className="grid md:grid-cols-2 gap-3">
+              <input
+                className="border p-3 rounded"
+                placeholder="Full Name"
+                value={form.name}
+                onChange={(e) => updateField("name", e.target.value)}
+              />
+
+              <input
+                className="border p-3 rounded"
+                placeholder="Title / Role"
+                value={form.title}
+                onChange={(e) => updateField("title", e.target.value)}
+              />
+
+              <input
+                className="border p-3 rounded"
+                placeholder="Email"
+                value={form.email}
+                onChange={(e) => updateField("email", e.target.value)}
+              />
+
+              <input
+                className="border p-3 rounded"
+                placeholder="Phone"
+                value={form.phone}
+                onChange={(e) => updateField("phone", e.target.value)}
+              />
+
+              <input
+                className="border p-3 rounded"
+                placeholder="Location"
+                value={form.location}
+                onChange={(e) => updateField("location", e.target.value)}
+              />
+
+              <input
+                className="border p-3 rounded"
+                placeholder="LinkedIn URL"
+                value={form.linkedin}
+                onChange={(e) => updateField("linkedin", e.target.value)}
+              />
+
+              <input
+                className="border p-3 rounded"
+                placeholder="GitHub URL"
+                value={form.github}
+                onChange={(e) => updateField("github", e.target.value)}
+              />
+
+              <input
+                className="border p-3 rounded"
+                placeholder="Portfolio / Website URL"
+                value={form.portfolio}
+                onChange={(e) => updateField("portfolio", e.target.value)}
+              />
+            </div>
+
+            <textarea
+              className="border p-3 rounded w-full mt-3"
+              rows="4"
+              placeholder="Professional Summary"
+              value={form.summary}
+              onChange={(e) => updateField("summary", e.target.value)}
+            />
+
+            <textarea
+              className="border p-3 rounded w-full mt-3"
+              rows="4"
+              placeholder="Education"
+              value={form.education}
+              onChange={(e) => updateField("education", e.target.value)}
+            />
+
+            <textarea
+              className="border p-3 rounded w-full mt-3"
+              rows="4"
+              placeholder="Skills"
+              value={form.skills}
+              onChange={(e) => updateField("skills", e.target.value)}
+            />
+
+            <textarea
+              className="border p-3 rounded w-full mt-3"
+              rows="5"
+              placeholder="Projects"
+              value={form.projects}
+              onChange={(e) => updateField("projects", e.target.value)}
+            />
+
+            <textarea
+              className="border p-3 rounded w-full mt-3"
+              rows="5"
+              placeholder="Experience / Internship"
+              value={form.experience}
+              onChange={(e) => updateField("experience", e.target.value)}
+            />
+
+            <textarea
+              className="border p-3 rounded w-full mt-3"
+              rows="4"
+              placeholder="Certifications / Achievements"
+              value={form.certifications}
+              onChange={(e) => updateField("certifications", e.target.value)}
+            />
+
+            <button
+              onClick={printResume}
+              className="mt-5 w-full bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 print:hidden"
+            >
+              Download / Print Resume
+            </button>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl shadow-sm border">
+            <h2 className="text-2xl font-bold mb-5 print:hidden">
+              Resume Preview
+            </h2>
+
+            <div
+              id="resume-preview"
+              className={`bg-white border rounded-xl p-8 min-h-[900px] ${
+                template === "classic"
+                  ? "text-slate-900"
+                  : template === "minimal"
+                  ? "text-slate-800"
+                  : "text-slate-900"
+              }`}
+            >
+              <div
+                className={`pb-4 mb-5 ${
+                  template === "modern"
+                    ? "border-b-4 border-blue-600"
+                    : "border-b border-slate-300"
+                }`}
+              >
+                <h2
+                  className={`text-4xl font-bold ${
+                    template === "modern" ? "text-blue-700" : "text-slate-900"
+                  }`}
+                >
+                  {form.name || "Your Name"}
+                </h2>
+
+                <p className="text-lg mt-1 text-slate-600">
+                  {form.title || "Your Professional Title"}
+                </p>
+
+                <div className="flex flex-wrap gap-3 text-sm text-slate-600 mt-3">
+                  {form.email && <span>{form.email}</span>}
+                  {form.phone && <span>{form.phone}</span>}
+                  {form.location && <span>{form.location}</span>}
+                </div>
+
+                <div className="flex flex-wrap gap-3 text-sm text-blue-700 mt-2">
+                  {form.linkedin && (
+                    <a href={form.linkedin} target="_blank" rel="noreferrer">
+                      LinkedIn
+                    </a>
+                  )}
+
+                  {form.github && (
+                    <a href={form.github} target="_blank" rel="noreferrer">
+                      GitHub
+                    </a>
+                  )}
+
+                  {form.portfolio && (
+                    <a href={form.portfolio} target="_blank" rel="noreferrer">
+                      Portfolio
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {form.summary && (
+                <section className="mb-5">
+                  <h3 className={sectionTitle}>Summary</h3>
+                  <p className="text-slate-700 whitespace-pre-line leading-7">
+                    {form.summary}
+                  </p>
+                </section>
+              )}
+
+              {form.education && (
+                <section className="mb-5">
+                  <h3 className={sectionTitle}>Education</h3>
+                  <p className="text-slate-700 whitespace-pre-line leading-7">
+                    {form.education}
+                  </p>
+                </section>
+              )}
+
+              {form.skills && (
+                <section className="mb-5">
+                  <h3 className={sectionTitle}>Skills</h3>
+                  <p className="text-slate-700 whitespace-pre-line leading-7">
+                    {form.skills}
+                  </p>
+                </section>
+              )}
+
+              {form.projects && (
+                <section className="mb-5">
+                  <h3 className={sectionTitle}>Projects</h3>
+                  <p className="text-slate-700 whitespace-pre-line leading-7">
+                    {form.projects}
+                  </p>
+                </section>
+              )}
+
+              {form.experience && (
+                <section className="mb-5">
+                  <h3 className={sectionTitle}>Experience</h3>
+                  <p className="text-slate-700 whitespace-pre-line leading-7">
+                    {form.experience}
+                  </p>
+                </section>
+              )}
+
+              {form.certifications && (
+                <section>
+                  <h3 className={sectionTitle}>
+                    Certifications & Achievements
+                  </h3>
+                  <p className="text-slate-700 whitespace-pre-line leading-7">
+                    {form.certifications}
+                  </p>
+                </section>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <section className="mt-12 bg-white border rounded-2xl p-6 shadow-sm print:hidden">
+          <h2 className="text-2xl font-bold mb-4">
+            Free Online Resume Builder
+          </h2>
+
+          <p className="text-slate-600 leading-7 mb-4">
+            ToolNest Resume Builder helps students and job seekers create a
+            professional resume online. You can add personal details,
+            education, skills, projects, internships, certifications and useful
+            links such as LinkedIn, GitHub and portfolio websites.
+          </p>
+
+          <p className="text-slate-600 leading-7 mb-4">
+            This resume maker is useful for college students, freshers,
+            interns, freelancers and anyone preparing for placements or job
+            applications. Choose a clean template, fill your details and print
+            or save your resume as a PDF using your browser.
+          </p>
+
+          <p className="text-slate-600 leading-7">
+            The tool works directly in your browser and does not require
+            account registration or software installation.
+          </p>
+        </section>
       </div>
-    </div>
+    </>
   );
 }
 

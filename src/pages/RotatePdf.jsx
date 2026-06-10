@@ -111,133 +111,193 @@ function RotatePdf() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-5 py-10 relative">
+    <>
       <Helmet>
-        <title>Rotate PDF Online Free | ToolNest</title>
+        <title>
+          Rotate PDF Online Free | Rotate PDF Pages | ToolNest
+        </title>
+
         <meta
           name="description"
-          content="Rotate PDF pages online for free. Upload a PDF, rotate all pages or selected pages, and download instantly."
+          content="Rotate PDF pages online for free with ToolNest. Upload a PDF, rotate all pages or selected pages, and download the rotated PDF instantly."
         />
+
+        <meta
+          name="keywords"
+          content="Rotate PDF, Rotate PDF Pages, PDF Rotator, Rotate PDF Online, Rotate Selected PDF Pages, Edit PDF, ToolNest"
+        />
+
+        <link
+          rel="canonical"
+          href="https://tools.nihalusaidh.com/rotate-pdf"
+        />
+
+        <meta
+          property="og:title"
+          content="Rotate PDF Online Free | ToolNest"
+        />
+
+        <meta
+          property="og:description"
+          content="Rotate all PDF pages or selected pages online and download the updated PDF instantly."
+        />
+
+        <meta
+          property="og:url"
+          content="https://tools.nihalusaidh.com/rotate-pdf"
+        />
+
+        <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
       </Helmet>
 
-      {success && (
-        <div className="fixed top-5 right-5 bg-green-600 text-white px-6 py-4 rounded-xl shadow-lg z-50">
-          PDF rotated successfully!
+      <div className="max-w-6xl mx-auto px-5 py-10 relative">
+        {success && (
+          <div className="fixed top-5 right-5 bg-green-600 text-white px-6 py-4 rounded-xl shadow-lg z-50">
+            PDF rotated successfully!
+          </div>
+        )}
+
+        <div className="text-center mb-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">
+            Rotate PDF Online
+          </h1>
+
+          <p className="text-slate-600 text-lg">
+            Rotate all pages or selected pages in your PDF file. Choose 90°,
+            180° or 270° rotation and download the updated PDF instantly.
+          </p>
         </div>
-      )}
 
-      <div className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-bold mb-3">
-          Rotate PDF
-        </h1>
+        <div className="grid lg:grid-cols-2 gap-6">
+          <div className="bg-white p-6 rounded-2xl shadow-sm border">
+            <h2 className="text-2xl font-bold mb-5">Upload PDF</h2>
 
-        <p className="text-slate-600 text-lg">
-          Rotate all pages or selected pages in your PDF.
-        </p>
-      </div>
+            <label
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragActive(true);
+              }}
+              onDragLeave={() => setDragActive(false)}
+              onDrop={handleDrop}
+              className={`flex flex-col items-center justify-center border-2 border-dashed rounded-2xl p-14 cursor-pointer transition ${
+                dragActive
+                  ? "border-blue-600 bg-blue-50"
+                  : "border-slate-300 bg-slate-50"
+              }`}
+            >
+              <span className="text-5xl mb-3">🔄</span>
 
-      <div className="grid lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-2xl shadow-sm border">
-          <h2 className="text-2xl font-bold mb-5">Upload PDF</h2>
+              <p className="text-lg font-semibold">Drag and drop PDF here</p>
 
-          <label
-            onDragOver={(e) => {
-              e.preventDefault();
-              setDragActive(true);
-            }}
-            onDragLeave={() => setDragActive(false)}
-            onDrop={handleDrop}
-            className={`flex flex-col items-center justify-center border-2 border-dashed rounded-2xl p-14 cursor-pointer transition ${
-              dragActive
-                ? "border-blue-600 bg-blue-50"
-                : "border-slate-300 bg-slate-50"
-            }`}
-          >
-            <span className="text-5xl mb-3">🔄</span>
+              <p className="text-slate-500 mt-1">or click to upload</p>
 
-            <p className="text-lg font-semibold">Drag and drop PDF here</p>
+              <p className="text-sm text-slate-400 mt-3">PDF file only</p>
 
-            <p className="text-slate-500 mt-1">or click to upload</p>
+              <input
+                type="file"
+                accept="application/pdf"
+                className="hidden"
+                onChange={(e) => handleFile(e.target.files[0])}
+              />
+            </label>
 
-            <p className="text-sm text-slate-400 mt-3">PDF file only</p>
+            {file && (
+              <div className="mt-5 bg-blue-50 p-4 rounded-xl">
+                <p className="font-semibold">{file.name}</p>
+
+                <p className="text-slate-600 text-sm">
+                  Total Pages: {pageCount}
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl shadow-sm border">
+            <h2 className="text-2xl font-bold mb-5">Rotation Settings</h2>
+
+            <label className="font-medium">Rotation Angle</label>
+
+            <select
+              className="border p-3 rounded w-full mt-2 mb-5"
+              value={rotation}
+              onChange={(e) => setRotation(e.target.value)}
+            >
+              <option value={90}>90° Clockwise</option>
+              <option value={180}>180°</option>
+              <option value={270}>270° Clockwise</option>
+            </select>
+
+            <label className="font-medium">Pages to Rotate</label>
 
             <input
-              type="file"
-              accept="application/pdf"
-              className="hidden"
-              onChange={(e) => handleFile(e.target.files[0])}
+              className="border p-3 rounded w-full mt-2"
+              placeholder="all or Example: 1,3,5-7"
+              value={pageRange}
+              onChange={(e) => setPageRange(e.target.value)}
             />
-          </label>
 
-          {file && (
-            <div className="mt-5 bg-blue-50 p-4 rounded-xl">
-              <p className="font-semibold">{file.name}</p>
-              <p className="text-slate-600 text-sm">
-                Total Pages: {pageCount}
-              </p>
-            </div>
-          )}
+            <p className="text-sm text-slate-500 mt-3">
+              Type <b>all</b> to rotate every page, or use page numbers like{" "}
+              <b>1,3,5-7</b>.
+            </p>
+
+            <button
+              onClick={rotatePdf}
+              disabled={loading}
+              className="mt-6 w-full bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 disabled:opacity-60"
+            >
+              {loading ? "Rotating PDF..." : "Rotate PDF"}
+            </button>
+
+            {downloadUrl && (
+              <a
+                href={downloadUrl}
+                download="rotated-document.pdf"
+                className="block text-center mt-4 bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700"
+              >
+                Download Rotated PDF
+              </a>
+            )}
+
+            {downloadUrl && (
+              <div className="mt-6 bg-green-50 p-5 rounded-xl">
+                <h2 className="font-bold text-xl text-green-700">
+                  Rotated PDF Ready
+                </h2>
+
+                <p className="text-slate-600 mt-1">
+                  Your selected PDF pages were rotated successfully.
+                </p>
+              </div>
+            )}
+          </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border">
-          <h2 className="text-2xl font-bold mb-5">Rotation Settings</h2>
+        <section className="mt-12 bg-white border rounded-2xl p-6 shadow-sm">
+          <h2 className="text-2xl font-bold mb-4">
+            Free Online PDF Rotator
+          </h2>
 
-          <label className="font-medium">Rotation Angle</label>
-          <select
-            className="border p-3 rounded w-full mt-2 mb-5"
-            value={rotation}
-            onChange={(e) => setRotation(e.target.value)}
-          >
-            <option value={90}>90° Clockwise</option>
-            <option value={180}>180°</option>
-            <option value={270}>270° Clockwise</option>
-          </select>
-
-          <label className="font-medium">Pages to Rotate</label>
-          <input
-            className="border p-3 rounded w-full mt-2"
-            placeholder="all or Example: 1,3,5-7"
-            value={pageRange}
-            onChange={(e) => setPageRange(e.target.value)}
-          />
-
-          <p className="text-sm text-slate-500 mt-3">
-            Type <b>all</b> to rotate every page, or use page numbers like{" "}
-            <b>1,3,5-7</b>.
+          <p className="text-slate-600 leading-7 mb-4">
+            ToolNest Rotate PDF lets you rotate PDF pages online without
+            installing any software. You can rotate the entire PDF or choose
+            specific pages using page numbers and page ranges.
           </p>
 
-          <button
-            onClick={rotatePdf}
-            disabled={loading}
-            className="mt-6 w-full bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 disabled:opacity-60"
-          >
-            {loading ? "Rotating PDF..." : "Rotate PDF"}
-          </button>
+          <p className="text-slate-600 leading-7 mb-4">
+            This tool is useful for scanned documents, sideways pages,
+            certificates, forms, assignments and reports that need to be fixed
+            before sharing or printing.
+          </p>
 
-          {downloadUrl && (
-            <a
-              href={downloadUrl}
-              download="rotated-document.pdf"
-              className="block text-center mt-4 bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700"
-            >
-              Download Rotated PDF
-            </a>
-          )}
-
-          {downloadUrl && (
-            <div className="mt-6 bg-green-50 p-5 rounded-xl">
-              <h2 className="font-bold text-xl text-green-700">
-                Rotated PDF Ready
-              </h2>
-
-              <p className="text-slate-600 mt-1">
-                Your selected PDF pages were rotated successfully.
-              </p>
-            </div>
-          )}
-        </div>
+          <p className="text-slate-600 leading-7">
+            Upload your PDF, choose the rotation angle, select the pages to
+            rotate and download the corrected PDF instantly.
+          </p>
+        </section>
       </div>
-    </div>
+    </>
   );
 }
 
