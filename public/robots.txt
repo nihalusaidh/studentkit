@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tools.nihalusaidh.com
+Sitemap: https://tools.nihalusaidh.com/sitemap.xml
