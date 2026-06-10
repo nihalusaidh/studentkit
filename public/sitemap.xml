@@ -1,103 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
- xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://nihalusaidh.com/</loc>
+    <loc>https://tools.nihalusaidh.com/</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/about</loc>
+    <loc>https://tools.nihalusaidh.com/about</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/privacy-policy</loc>
+    <loc>https://tools.nihalusaidh.com/privacy-policy</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/terms</loc>
+    <loc>https://tools.nihalusaidh.com/terms</loc>
   </url>
 
   <!-- Academic Tools -->
 
   <url>
-    <loc>https://nihalusaidh.com/cgpa-calculator</loc>
+    <loc>https://tools.nihalusaidh.com/cgpa-calculator</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/gpa-calculator</loc>
+    <loc>https://tools.nihalusaidh.com/gpa-calculator</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/internal-marks-calculator</loc>
+    <loc>https://tools.nihalusaidh.com/internal-marks-calculator</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/attendance-calculator</loc>
+    <loc>https://tools.nihalusaidh.com/attendance-calculator</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/resume-builder</loc>
+    <loc>https://tools.nihalusaidh.com/resume-builder</loc>
   </url>
 
   <!-- Image Tools -->
 
   <url>
-    <loc>https://nihalusaidh.com/image-compressor</loc>
+    <loc>https://tools.nihalusaidh.com/image-compressor</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/image-converter</loc>
+    <loc>https://tools.nihalusaidh.com/image-converter</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/image-resize</loc>
+    <loc>https://tools.nihalusaidh.com/image-resize</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/image-crop</loc>
+    <loc>https://tools.nihalusaidh.com/image-crop</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/jpg-to-png</loc>
+    <loc>https://tools.nihalusaidh.com/jpg-to-png</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/png-to-jpg</loc>
+    <loc>https://tools.nihalusaidh.com/png-to-jpg</loc>
   </url>
 
   <!-- PDF Tools -->
 
   <url>
-    <loc>https://nihalusaidh.com/jpg-to-pdf</loc>
+    <loc>https://tools.nihalusaidh.com/jpg-to-pdf</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/pdf-to-jpg</loc>
+    <loc>https://tools.nihalusaidh.com/pdf-to-jpg</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/merge-pdf</loc>
+    <loc>https://tools.nihalusaidh.com/merge-pdf</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/split-pdf</loc>
+    <loc>https://tools.nihalusaidh.com/split-pdf</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/compress-pdf</loc>
+    <loc>https://tools.nihalusaidh.com/compress-pdf</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/remove-pdf-pages</loc>
+    <loc>https://tools.nihalusaidh.com/remove-pdf-pages</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/rotate-pdf</loc>
+    <loc>https://tools.nihalusaidh.com/rotate-pdf</loc>
   </url>
 
   <url>
-    <loc>https://nihalusaidh.com/watermark-pdf</loc>
+    <loc>https://tools.nihalusaidh.com/watermark-pdf</loc>
   </url>
 
 </urlset>
