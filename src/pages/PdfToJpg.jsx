@@ -86,7 +86,7 @@ function PdfToJpg() {
   return (
     <div className="max-w-6xl mx-auto px-5 py-10 relative">
       <Helmet>
-        <title>PDF to JPG Converter Online | StudentKit</title>
+        <title>PDF to JPG Converter Online | ToolNest</title>
         <meta
           name="description"
           content="Convert PDF pages to JPG images online for free. Upload a PDF and download each page as an image."

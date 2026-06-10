@@ -104,7 +104,7 @@ function Home() {
   return (
     <>
       <Helmet>
-        <title>StudentKit - Free Student, Image and PDF Tools</title>
+        <title>ToolNest - Free Student, Image and PDF Tools</title>
 
         <meta
           name="description"
@@ -119,7 +119,7 @@ function Home() {
           </span>
 
           <h1 className="text-5xl md:text-6xl font-bold mt-6 mb-6">
-            StudentKit
+            ToolNest
           </h1>
 
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">

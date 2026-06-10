@@ -121,7 +121,7 @@ function RemovePdfPages() {
   return (
     <div className="max-w-6xl mx-auto px-5 py-10 relative">
       <Helmet>
-        <title>Remove PDF Pages Online Free | StudentKit</title>
+        <title>Remove PDF Pages Online Free | ToolNest</title>
         <meta
           name="description"
           content="Remove unwanted pages from a PDF online for free. Upload a PDF, enter page numbers, and download the cleaned PDF."

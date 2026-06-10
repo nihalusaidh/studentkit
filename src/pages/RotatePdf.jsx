@@ -113,7 +113,7 @@ function RotatePdf() {
   return (
     <div className="max-w-6xl mx-auto px-5 py-10 relative">
       <Helmet>
-        <title>Rotate PDF Online Free | StudentKit</title>
+        <title>Rotate PDF Online Free | ToolNest</title>
         <meta
           name="description"
           content="Rotate PDF pages online for free. Upload a PDF, rotate all pages or selected pages, and download instantly."

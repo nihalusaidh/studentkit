@@ -81,7 +81,7 @@ function ImageCompressor() {
   return (
     <div className="max-w-5xl mx-auto px-5 py-10 relative">
       <Helmet>
-        <title>Free Image Compressor Online | StudentKit</title>
+        <title>Free Image Compressor Online | ToolNest</title>
         <meta
           name="description"
           content="Compress JPG, PNG and WebP images online for free. Reduce image size without installing software."

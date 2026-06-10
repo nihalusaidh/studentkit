@@ -180,7 +180,7 @@ function ResumeBuilder() {
   return (
     <div className="max-w-7xl mx-auto px-5 py-10">
       <Helmet>
-        <title>Free Resume Builder for Students | StudentKit</title>
+        <title>Free Resume Builder for Students | ToolNest</title>
         <meta
           name="description"
           content="Create student resumes with templates, skills, projects, education and profile links."

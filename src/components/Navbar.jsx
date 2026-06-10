@@ -73,7 +73,7 @@ function Navbar() {
           onClick={closeMenu}
           className="text-2xl font-bold text-blue-600"
         >
-          StudentKit
+          ToolNest
         </Link>
 
         <div className="hidden md:flex gap-6 text-sm font-medium text-slate-700 items-center">

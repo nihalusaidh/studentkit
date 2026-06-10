@@ -49,7 +49,7 @@ function GPACalculator() {
   return (
     <div className="max-w-6xl mx-auto px-5 py-10">
       <Helmet>
-        <title>GPA Calculator | StudentKit</title>
+        <title>GPA Calculator | ToolNest</title>
         <meta
           name="description"
           content="Calculate semester GPA using credits and grades."

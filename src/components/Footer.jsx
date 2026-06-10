@@ -6,7 +6,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-5 py-12">
         <div className="grid md:grid-cols-4 gap-10">
           <div>
-            <h2 className="text-2xl font-bold text-blue-400">StudentKit</h2>
+            <h2 className="text-2xl font-bold text-blue-400">ToolNest</h2>
 
             <p className="text-slate-400 mt-3">
               Free academic, image and PDF tools for students and creators.
@@ -112,7 +112,7 @@ function Footer() {
         </div>
 
         <div className="border-t border-slate-800 mt-10 pt-6 text-center text-slate-500">
-          © 2026 StudentKit. Built by Nihal Usaidh.
+          © 2026 ToolNest. Built by Nihal Usaidh.
         </div>
       </div>
     </footer>

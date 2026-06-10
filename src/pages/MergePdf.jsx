@@ -104,7 +104,7 @@ function MergePdf() {
   return (
     <div className="max-w-6xl mx-auto px-5 py-10 relative">
       <Helmet>
-        <title>Merge PDF Online Free | StudentKit</title>
+        <title>Merge PDF Online Free | ToolNest</title>
         <meta
           name="description"
           content="Merge multiple PDF files into one PDF online for free. Upload, reorder and combine PDFs instantly."

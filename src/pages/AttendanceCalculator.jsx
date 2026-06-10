@@ -24,7 +24,7 @@ function AttendanceCalculator() {
   return (
     <div className="max-w-5xl mx-auto px-5 py-10">
       <Helmet>
-        <title>Attendance Calculator for Students | StudentKit</title>
+        <title>Attendance Calculator for Students | ToolNest</title>
         <meta
           name="description"
           content="Calculate attendance percentage, classes needed to reach 75%, and how many classes you can skip safely."

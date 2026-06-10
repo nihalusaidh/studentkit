@@ -85,7 +85,7 @@ function ImageCrop() {
   return (
     <div className="max-w-6xl mx-auto px-5 py-10 relative">
       <Helmet>
-        <title>Free Image Crop Tool Online | StudentKit</title>
+        <title>Free Image Crop Tool Online | ToolNest</title>
         <meta
           name="description"
           content="Crop JPG, PNG and WebP images online for free. Upload, crop, zoom and download your cropped image instantly."

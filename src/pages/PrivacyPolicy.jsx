@@ -4,10 +4,10 @@ function PrivacyPolicy() {
   return (
     <div className="max-w-5xl mx-auto px-5 py-16">
       <Helmet>
-        <title>Privacy Policy | StudentKit</title>
+        <title>Privacy Policy | ToolNest</title>
         <meta
           name="description"
-          content="Privacy Policy for StudentKit."
+          content="Privacy Policy for ToolNest."
         />
       </Helmet>
 
@@ -22,7 +22,7 @@ function PrivacyPolicy() {
           </h2>
 
           <p>
-            StudentKit may collect basic usage information such as browser type,
+            ToolNest may collect basic usage information such as browser type,
             device information, pages visited and anonymous analytics data to
             improve user experience.
           </p>
@@ -34,7 +34,7 @@ function PrivacyPolicy() {
           </h2>
 
           <p>
-            Most StudentKit tools process files directly in your browser. We do
+            Most ToolNest tools process files directly in your browser. We do
             not permanently store uploaded files on our servers.
           </p>
         </section>
@@ -45,7 +45,7 @@ function PrivacyPolicy() {
           </h2>
 
           <p>
-            StudentKit may use cookies and similar technologies to improve site
+            ToolNest may use cookies and similar technologies to improve site
             performance and understand website usage.
           </p>
         </section>
@@ -80,7 +80,7 @@ function PrivacyPolicy() {
 
           <p>
             This Privacy Policy may be updated periodically. Continued use of
-            StudentKit indicates acceptance of any changes.
+            ToolNest indicates acceptance of any changes.
           </p>
         </section>
       </div>

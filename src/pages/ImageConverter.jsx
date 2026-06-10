@@ -94,7 +94,7 @@ function ImageConverter() {
   return (
     <div className="max-w-6xl mx-auto px-5 py-10 relative">
       <Helmet>
-        <title>Free Image Converter Online | StudentKit</title>
+        <title>Free Image Converter Online | ToolNest</title>
         <meta
           name="description"
           content="Convert JPG, PNG and WebP images online for free using a fast browser-based image converter."

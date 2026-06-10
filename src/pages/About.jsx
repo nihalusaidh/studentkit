@@ -4,19 +4,19 @@ function About() {
   return (
     <div className="max-w-5xl mx-auto px-5 py-16">
       <Helmet>
-        <title>About StudentKit | Free Student Tools</title>
+        <title>About ToolNest | Free Student Tools</title>
         <meta
           name="description"
-          content="Learn about StudentKit, a free online toolkit for students with academic calculators, image tools and PDF tools."
+          content="Learn about ToolNest, a free online toolkit for students with academic calculators, image tools and PDF tools."
         />
       </Helmet>
 
       <h1 className="text-4xl md:text-5xl font-bold mb-6">
-        About StudentKit
+        About ToolNest
       </h1>
 
       <p className="text-lg text-slate-600 leading-8 mb-6">
-        StudentKit is a free online toolkit built for students, creators and
+        ToolNest is a free online toolkit built for students, creators and
         everyday users who need fast academic, image and PDF tools in one place.
       </p>
 

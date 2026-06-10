@@ -70,7 +70,7 @@ function CGPACalculator() {
   return (
     <div className="max-w-5xl mx-auto px-5 py-10">
       <Helmet>
-        <title>CGPA Calculator for College Students | StudentKit</title>
+        <title>CGPA Calculator for College Students | ToolNest</title>
         <meta
           name="description"
           content="Calculate CGPA using completed semester GPA values. Supports simple CGPA and credit-weighted CGPA."

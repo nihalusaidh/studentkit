@@ -110,7 +110,7 @@ function SplitPdf() {
   return (
     <div className="max-w-6xl mx-auto px-5 py-10 relative">
       <Helmet>
-        <title>Split PDF Online Free | StudentKit</title>
+        <title>Split PDF Online Free | ToolNest</title>
         <meta
           name="description"
           content="Split PDF files online for free. Extract selected pages from a PDF and download a new PDF instantly."

@@ -101,7 +101,7 @@ function JpgToPdf() {
   return (
     <div className="max-w-6xl mx-auto px-5 py-10 relative">
       <Helmet>
-        <title>JPG to PDF Converter Online | StudentKit</title>
+        <title>JPG to PDF Converter Online | ToolNest</title>
         <meta
           name="description"
           content="Convert JPG, PNG and WebP images to PDF online for free. Upload multiple images and download a single PDF."

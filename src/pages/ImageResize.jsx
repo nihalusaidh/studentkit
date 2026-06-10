@@ -115,7 +115,7 @@ function ImageResize() {
   return (
     <div className="max-w-6xl mx-auto px-5 py-10 relative">
       <Helmet>
-        <title>Free Image Resize Tool Online | StudentKit</title>
+        <title>Free Image Resize Tool Online | ToolNest</title>
         <meta
           name="description"
           content="Resize JPG, PNG and WebP images online with custom width and height. Free browser-based image resizer."

@@ -67,7 +67,7 @@ function InternalCalculator() {
   return (
     <div className="max-w-6xl mx-auto px-5 py-10">
       <Helmet>
-        <title>Internal Marks Calculator for Students | StudentKit</title>
+        <title>Internal Marks Calculator for Students | ToolNest</title>
         <meta
           name="description"
           content="Calculate internal marks, required end semester marks and final grade."

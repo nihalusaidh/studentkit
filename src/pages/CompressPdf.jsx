@@ -89,7 +89,7 @@ function CompressPdf() {
   return (
     <div className="max-w-6xl mx-auto px-5 py-10 relative">
       <Helmet>
-        <title>Compress PDF Online Free | StudentKit</title>
+        <title>Compress PDF Online Free | ToolNest</title>
         <meta
           name="description"
           content="Compress PDF files online for free. Reduce PDF file size in your browser and download instantly."

@@ -4,7 +4,7 @@ import { PDFDocument, rgb, degrees } from "pdf-lib";
 
 function WatermarkPdf() {
   const [file, setFile] = useState(null);
-  const [watermarkText, setWatermarkText] = useState("StudentKit");
+  const [watermarkText, setWatermarkText] = useState("ToolNest");
   const [fontSize, setFontSize] = useState(40);
   const [downloadUrl, setDownloadUrl] = useState("");
   const [dragActive, setDragActive] = useState(false);
@@ -83,7 +83,7 @@ function WatermarkPdf() {
   return (
     <div className="max-w-6xl mx-auto px-5 py-10 relative">
       <Helmet>
-        <title>Watermark PDF Online Free | StudentKit</title>
+        <title>Watermark PDF Online Free | ToolNest</title>
         <meta
           name="description"
           content="Add text watermark to PDF files online for free. Upload a PDF, add watermark text and download instantly."
