@@ -49,25 +49,18 @@ function GPACalculator() {
   return (
     <>
       <Helmet>
-        <title>
-          GPA Calculator Online | Semester GPA Calculator | ToolNest
-        </title>
+  <title>GPA Calculator Online | Free GPA Calculator | ToolNest</title>
 
-        <meta
-          name="description"
-          content="Free GPA Calculator for college and university students. Calculate your semester GPA instantly using subject credits and grades."
-        />
+  <meta
+    name="description"
+    content="Calculate GPA online instantly. Free GPA calculator for college and university students."
+  />
 
-        <meta
-          name="keywords"
-          content="GPA Calculator, Semester GPA Calculator, College GPA Calculator, Engineering GPA Calculator, Credit GPA Calculator, ToolNest"
-        />
-
-        <link
-          rel="canonical"
-          href="https://tools.nihalusaidh.com/gpa-calculator"
-        />
-      </Helmet>
+  <link
+    rel="canonical"
+    href="https://tools.nihalusaidh.com/gpa-calculator"
+  />
+</Helmet>
 
       <div className="max-w-6xl mx-auto px-5 py-10">
         <h1 className="text-4xl font-bold mb-3">

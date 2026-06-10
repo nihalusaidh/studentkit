@@ -71,25 +71,23 @@ function CGPACalculator() {
   return (
     <>
       <Helmet>
-        <title>
-          CGPA Calculator Online | College CGPA Calculator | ToolNest
-        </title>
+  <title>CGPA Calculator Online | College CGPA Calculator | ToolNest</title>
 
-        <meta
-          name="description"
-          content="Free CGPA Calculator for college and engineering students. Calculate your overall CGPA instantly using semester GPA values with optional credit-weighted calculation."
-        />
+  <meta
+    name="description"
+    content="Calculate your CGPA online instantly. Free college CGPA calculator with percentage conversion and grade estimation."
+  />
 
-        <meta
-          name="keywords"
-          content="CGPA Calculator, College CGPA Calculator, Engineering CGPA Calculator, Semester GPA Calculator, Credit Weighted CGPA Calculator, ToolNest"
-        />
+  <meta
+    name="keywords"
+    content="CGPA calculator, college CGPA calculator, CGPA to percentage, GPA calculator"
+  />
 
-        <link
-          rel="canonical"
-          href="https://tools.nihalusaidh.com/cgpa-calculator"
-        />
-      </Helmet>
+  <link
+    rel="canonical"
+    href="https://tools.nihalusaidh.com/cgpa-calculator"
+  />
+</Helmet>
 
       <div className="max-w-5xl mx-auto px-5 py-10">
         <h1 className="text-4xl font-bold mb-3">

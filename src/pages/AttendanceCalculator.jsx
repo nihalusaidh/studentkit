@@ -25,23 +25,18 @@ function AttendanceCalculator() {
   return (
     <>
       <Helmet>
-        <title>Attendance Calculator Online | 75% Attendance Calculator | ToolNest</title>
+  <title>Attendance Calculator Online | ToolNest</title>
 
-        <meta
-          name="description"
-          content="Use ToolNest Attendance Calculator to calculate attendance percentage, classes needed to reach 75%, and how many classes you can skip safely."
-        />
+  <meta
+    name="description"
+    content="Calculate attendance percentage and find how many classes you can miss or attend."
+  />
 
-        <meta
-          name="keywords"
-          content="attendance calculator, 75 attendance calculator, college attendance calculator, class attendance calculator, attendance percentage calculator, ToolNest"
-        />
-
-        <link
-          rel="canonical"
-          href="https://tools.nihalusaidh.com/attendance-calculator"
-        />
-      </Helmet>
+  <link
+    rel="canonical"
+    href="https://tools.nihalusaidh.com/attendance-calculator"
+  />
+</Helmet>
 
       <div className="max-w-5xl mx-auto px-5 py-10">
         <h1 className="text-4xl font-bold mb-3">
