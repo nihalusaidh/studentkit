@@ -3,13 +3,16 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 function CGPACalculator() {
-  const [semesterCount, setSemesterCount] = useState(1);
+  const [semesterCount, setSemesterCount] = useState("1");
   const [semesters, setSemesters] = useState([{ gpa: "", credits: "" }]);
   const [useCredits, setUseCredits] = useState(false);
 
   const handleSemesterCount = (value) => {
-    const count = Math.max(1, Math.min(12, Number(value) || 1));
-    setSemesterCount(count);
+    setSemesterCount(value);
+
+    if (value === "") return;
+
+    const count = Math.max(1, Math.min(12, Number(value)));
 
     const updated = [];
     for (let i = 0; i < count; i++) {
@@ -42,12 +45,14 @@ function CGPACalculator() {
     setSemesters(updated);
   };
 
+  const semesterNumber = Number(semesterCount) || 0;
+
   const totalGpa = semesters.reduce(
     (sum, sem) => sum + (Number(sem.gpa) || 0),
     0
   );
 
-  const simpleCgpa = semesterCount > 0 ? totalGpa / semesterCount : 0;
+  const simpleCgpa = semesterNumber > 0 ? totalGpa / semesterNumber : 0;
 
   const totalCredits = semesters.reduce(
     (sum, sem) => sum + (Number(sem.credits) || 0),
@@ -232,6 +237,8 @@ function CGPACalculator() {
             type="number"
             min="1"
             max="12"
+            inputMode="numeric"
+            onWheel={(e) => e.target.blur()}
             className="border p-3 rounded w-full mt-2 mb-5"
             value={semesterCount}
             onChange={(e) => handleSemesterCount(e.target.value)}
@@ -286,6 +293,7 @@ function CGPACalculator() {
                 min="0"
                 max="10"
                 step="0.01"
+                inputMode="decimal"
                 className="border p-3 rounded"
                 placeholder="GPA out of 10"
                 value={sem.gpa}
@@ -298,6 +306,7 @@ function CGPACalculator() {
                 <input
                   type="number"
                   min="0"
+                  inputMode="numeric"
                   className="border p-3 rounded"
                   placeholder="Semester credits"
                   value={sem.credits}
@@ -322,7 +331,7 @@ function CGPACalculator() {
               <p className="text-slate-600">Semesters Completed</p>
 
               <h2 className="text-4xl font-bold text-green-600">
-                {semesterCount}
+                {semesterNumber}
               </h2>
             </div>
 
