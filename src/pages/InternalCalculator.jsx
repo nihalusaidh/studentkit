@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 function InternalCalculator() {
   const [courseType, setCourseType] = useState("theory");
@@ -19,12 +20,9 @@ function InternalCalculator() {
 
   const limit100 = (value) => {
     if (value === "") return "";
-
     const num = Number(value);
-
     if (num < 0) return 0;
     if (num > 100) return 100;
-
     return num;
   };
 
@@ -32,14 +30,10 @@ function InternalCalculator() {
 
   const totalMax = Number(internalMax) + Number(endSemMax);
 
-  const theoryWeighted =
-    n(cia1) * 0.35 + n(cia2) * 0.35 + n(sa) * 0.3;
-
+  const theoryWeighted = n(cia1) * 0.35 + n(cia2) * 0.35 + n(sa) * 0.3;
   const theoryInternal = (theoryWeighted * internalMax) / 100;
 
-  const practicalWeighted =
-    n(iapr) * 0.75 + n(activity) * 0.25;
-
+  const practicalWeighted = n(iapr) * 0.75 + n(activity) * 0.25;
   const practicalInternal = (practicalWeighted * internalMax) / 100;
 
   const finalTotalRaw = n(internal) + n(endSem);
@@ -60,48 +54,171 @@ function InternalCalculator() {
   };
 
   const predictedGrade = getGrade(finalPercentage);
-
-  const targetMin =
-    gradeData.find((g) => g.grade === targetGrade)?.min || 81;
-
+  const targetMin = gradeData.find((g) => g.grade === targetGrade)?.min || 81;
   const requiredTotalMarks = (targetMin / 100) * totalMax;
   const requiredEndSem = Math.max(requiredTotalMarks - n(internal), 0);
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is an internal marks calculator?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "An internal marks calculator helps students calculate internal assessment marks using CIA, activity, skill assessment, practical, and other college assessment scores.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How are internal marks calculated?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Internal marks are calculated using the weightage given to CIA tests, activities, skill assessments, practical records, and other components. The final value is converted to the selected internal marks total.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I calculate required end semester marks?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, enter your internal marks and select a target grade. The calculator will show the minimum end semester marks required to reach that grade.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can this calculator predict my grade?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, the grade predictor estimates your final grade by combining internal marks and end semester marks based on the selected total marks system.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is this useful for engineering students?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, this calculator is useful for engineering, diploma, arts, science, and college students who follow internal assessment and end semester examination systems.",
+        },
+      },
+    ],
+  };
+
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "ToolNest Internal Marks Calculator",
+    applicationCategory: "EducationalApplication",
+    operatingSystem: "Any",
+    url: "https://tools.nihalusaidh.com/internal-marks-calculator",
+    description:
+      "Free Internal Marks Calculator and Grade Predictor for college students. Calculate CIA marks, practical marks, final grade, and required end semester marks.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "INR",
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://tools.nihalusaidh.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Internal Marks Calculator",
+        item: "https://tools.nihalusaidh.com/internal-marks-calculator",
+      },
+    ],
+  };
 
   return (
     <>
       <Helmet>
         <title>
-          Internal Marks Calculator | Grade Predictor | ToolNest
+          Internal Marks Calculator & Grade Predictor | ToolNest
         </title>
 
         <meta
           name="description"
-          content="Calculate internal marks, predict final grades, and find the required end semester marks to achieve your target grade. Supports theory and practical courses."
+          content="Free Internal Marks Calculator for college students. Calculate CIA marks, practical marks, predict grades, and find required end semester marks instantly."
         />
 
         <meta
           name="keywords"
-          content="Internal Marks Calculator, Grade Predictor, End Semester Marks Calculator, College Internal Calculator, Theory Marks Calculator, Practical Marks Calculator, ToolNest"
+          content="internal marks calculator, CIA calculator, grade predictor, end semester marks calculator, college internal marks calculator, engineering internal marks calculator, practical marks calculator"
         />
 
         <link
           rel="canonical"
           href="https://tools.nihalusaidh.com/internal-marks-calculator"
         />
+
+        <meta
+          property="og:title"
+          content="Internal Marks Calculator & Grade Predictor"
+        />
+
+        <meta
+          property="og:description"
+          content="Calculate internal marks, predict final grades, and find required end semester marks using ToolNest."
+        />
+
+        <meta
+          property="og:url"
+          content="https://tools.nihalusaidh.com/internal-marks-calculator"
+        />
+
+        <meta property="og:type" content="website" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <meta
+          name="twitter:title"
+          content="Internal Marks Calculator for College Students"
+        />
+
+        <meta
+          name="twitter:description"
+          content="Calculate CIA marks, practical marks, final grade, and required end semester marks."
+        />
+
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify(softwareSchema)}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
       </Helmet>
 
-      <div className="max-w-6xl mx-auto px-5 py-10">
-        <h1 className="text-4xl font-bold mb-3">
-          Internal Marks Calculator
-        </h1>
+      <main className="max-w-6xl mx-auto px-5 py-10">
+        <section>
+          <h1 className="text-4xl font-bold mb-3">
+            Internal Marks Calculator
+          </h1>
 
-        <p className="text-slate-600 mb-8">
-          Calculate theory and practical internal marks, predict final grades,
-          and determine the minimum end semester marks required to achieve your
-          target grade.
-        </p>
+          <p className="text-slate-600 mb-8 leading-7">
+            Use this free Internal Marks Calculator to calculate theory
+            internal marks, practical internal marks, final grade, and required
+            end semester marks. This tool is useful for college, engineering,
+            diploma, and university students.
+          </p>
+        </section>
 
-        <div className="grid lg:grid-cols-2 gap-6">
+        <section className="grid lg:grid-cols-2 gap-6">
           <div className="bg-white p-6 rounded-2xl shadow-sm border">
             <h2 className="text-2xl font-bold mb-4">
               Internal Calculation
@@ -201,12 +318,44 @@ function InternalCalculator() {
                 </div>
               </>
             )}
+
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mt-5">
+              <p className="font-semibold text-blue-900">
+                Check Your Academic Performance
+              </p>
+
+              <p className="text-sm text-blue-700 mt-1">
+                After calculating internal marks, calculate your GPA, CGPA, or
+                attendance using ToolNest student tools.
+              </p>
+
+              <div className="flex flex-wrap gap-3 mt-3">
+                <Link
+                  to="/gpa-calculator"
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                >
+                  GPA Calculator
+                </Link>
+
+                <Link
+                  to="/cgpa-calculator"
+                  className="bg-white border border-blue-300 text-blue-700 px-4 py-2 rounded-lg hover:bg-blue-100 transition"
+                >
+                  CGPA Calculator
+                </Link>
+
+                <Link
+                  to="/attendance-calculator"
+                  className="bg-white border border-blue-300 text-blue-700 px-4 py-2 rounded-lg hover:bg-blue-100 transition"
+                >
+                  Attendance Calculator
+                </Link>
+              </div>
+            </div>
           </div>
 
           <div className="bg-white p-6 rounded-2xl shadow-sm border">
-            <h2 className="text-2xl font-bold mb-4">
-              Grade Predictor
-            </h2>
+            <h2 className="text-2xl font-bold mb-4">Grade Predictor</h2>
 
             <div className="grid grid-cols-2 gap-3 mb-4">
               <div>
@@ -241,7 +390,6 @@ function InternalCalculator() {
               value={internal}
               onChange={(e) => {
                 const val = Number(e.target.value);
-
                 if (e.target.value === "") setInternal("");
                 else if (val > internalMax) setInternal(internalMax);
                 else if (val < 0) setInternal(0);
@@ -258,7 +406,6 @@ function InternalCalculator() {
               value={endSem}
               onChange={(e) => {
                 const val = Number(e.target.value);
-
                 if (e.target.value === "") setEndSem("");
                 else if (val > endSemMax) setEndSem(endSemMax);
                 else if (val < 0) setEndSem(0);
@@ -313,32 +460,196 @@ function InternalCalculator() {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         <section className="mt-12 bg-white border rounded-2xl p-6 shadow-sm">
+          <h2 className="text-2xl font-bold mb-4">
+            How to Use the Internal Marks Calculator
+          </h2>
+
+          <ol className="list-decimal list-inside text-slate-600 leading-8">
+            <li>Select your internal marks total, such as 40, 50, or 60.</li>
+            <li>Select whether the course is theory or practical.</li>
+            <li>Enter CIA, SA, activity, IAPR, or practical scores.</li>
+            <li>Check your calculated internal marks instantly.</li>
+            <li>
+              Enter internal and end semester marks to predict your final grade.
+            </li>
+            <li>
+              Select a target grade to find the required end semester marks.
+            </li>
+          </ol>
+        </section>
+
+        <section className="mt-8 bg-white border rounded-2xl p-6 shadow-sm">
           <h2 className="text-2xl font-bold mb-4">
             Internal Marks and Grade Calculator
           </h2>
 
           <p className="text-slate-600 leading-7 mb-4">
-            ToolNest Internal Marks Calculator helps college and university
-            students calculate internal assessment marks for theory and
-            practical courses. Enter CIA, activity, SA, or IAPR scores to
-            calculate your internal marks instantly.
+            ToolNest Internal Marks Calculator helps students calculate internal
+            assessment marks for theory and practical courses. Many colleges use
+            CIA tests, activities, assignments, skill assessments, practical
+            records, and model exams to calculate internal marks.
           </p>
 
           <p className="text-slate-600 leading-7 mb-4">
-            The built-in Grade Predictor calculates your final percentage and
-            predicts the grade you are likely to receive based on your internal
-            and end semester marks.
+            This calculator supports different internal mark totals such as 40,
+            50, and 60. Students can enter their scores out of 100, and the tool
+            converts them into the selected internal marks total.
           </p>
 
           <p className="text-slate-600 leading-7">
-            You can also select a target grade such as S, A+, A, or B+ and find
-            the minimum end semester marks required to achieve that grade.
+            The built-in Grade Predictor helps you estimate your final grade by
+            combining internal marks and end semester marks. You can also choose
+            a target grade such as S, A+, A, or B+ and find the minimum end
+            semester marks needed.
           </p>
         </section>
-      </div>
+
+        <section className="mt-8 bg-white border rounded-2xl p-6 shadow-sm">
+          <h2 className="text-2xl font-bold mb-4">
+            Why Students Use This Calculator
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-4 text-slate-600 leading-7">
+            <div className="bg-slate-50 p-4 rounded-xl">
+              <h3 className="font-bold text-slate-800 mb-2">
+                Calculate Internal Marks
+              </h3>
+              <p>
+                Quickly calculate theory or practical internal marks using
+                college assessment components.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 p-4 rounded-xl">
+              <h3 className="font-bold text-slate-800 mb-2">
+                Predict Final Grade
+              </h3>
+              <p>
+                Enter internal and end semester marks to estimate your final
+                grade and grade point.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 p-4 rounded-xl">
+              <h3 className="font-bold text-slate-800 mb-2">
+                Find Required Marks
+              </h3>
+              <p>
+                Select a target grade and find how much you need in the end
+                semester exam.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 p-4 rounded-xl">
+              <h3 className="font-bold text-slate-800 mb-2">
+                Useful for College Students
+              </h3>
+              <p>
+                Designed for engineering, diploma, arts, science, and university
+                students.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-8 bg-white border rounded-2xl p-6 shadow-sm">
+          <h2 className="text-2xl font-bold mb-4">
+            Internal Marks Calculator FAQs
+          </h2>
+
+          <div className="space-y-5 text-slate-600 leading-7">
+            <div>
+              <h3 className="font-bold text-slate-800">
+                What is an internal marks calculator?
+              </h3>
+              <p>
+                It is a tool that calculates internal assessment marks using
+                CIA, activities, skill assessment, IAPR, practical, or other
+                college assessment scores.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-slate-800">
+                How are internal marks calculated?
+              </h3>
+              <p>
+                Internal marks are calculated using the weightage of CIA tests,
+                activities, skill assessments, practical records, or other
+                assessment components.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-slate-800">
+                Can I predict my final grade?
+              </h3>
+              <p>
+                Yes. Enter your internal marks and end semester marks to predict
+                your final percentage, grade, and grade point.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-slate-800">
+                Can I calculate required end semester marks?
+              </h3>
+              <p>
+                Yes. Select your target grade, and the calculator will show the
+                minimum end semester marks required.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-slate-800">
+                Is this useful for engineering students?
+              </h3>
+              <p>
+                Yes. This calculator is useful for engineering and college
+                students who follow internal assessment and end semester exam
+                systems.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-8 bg-white border rounded-2xl p-6 shadow-sm">
+          <h2 className="text-2xl font-bold mb-4">Related Student Tools</h2>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <Link
+              to="/cgpa-calculator"
+              className="border rounded-xl p-4 hover:bg-slate-50"
+            >
+              CGPA Calculator
+            </Link>
+
+            <Link
+              to="/gpa-calculator"
+              className="border rounded-xl p-4 hover:bg-slate-50"
+            >
+              GPA Calculator
+            </Link>
+
+            <Link
+              to="/attendance-calculator"
+              className="border rounded-xl p-4 hover:bg-slate-50"
+            >
+              Attendance Calculator
+            </Link>
+
+            <Link
+              to="/resume-builder"
+              className="border rounded-xl p-4 hover:bg-slate-50"
+            >
+              Resume Builder
+            </Link>
+          </div>
+        </section>
+      </main>
     </>
   );
 }
