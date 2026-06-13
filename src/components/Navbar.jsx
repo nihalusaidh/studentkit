@@ -38,7 +38,9 @@ function Navbar() {
 
   const Dropdown = ({ title, items }) => (
     <div className="relative group">
-      <button className="py-3 hover:text-blue-600">{title} ▾</button>
+      <button className="py-3 hover:text-blue-600">
+        {title} ▾
+      </button>
 
       <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
         <div className="bg-white border border-slate-200 rounded-xl shadow-xl w-72 p-3 max-h-[420px] overflow-y-auto">
@@ -90,15 +92,23 @@ function Navbar() {
           </Link>
 
           <Dropdown title="Academic Tools" items={academicTools} />
+
           <Dropdown title="Image Tools" items={imageTools} />
+
           <Dropdown title="PDF Tools" items={pdfTools} />
 
-          <Link to="/resume-builder" className="hover:text-blue-600 py-3">
-            Resume
+          <Link
+            to="/blog"
+            className="hover:text-blue-600 py-3"
+          >
+            Blog
           </Link>
 
-          <Link to="/blog" className="hover:text-blue-600 py-3">
-            Blog
+          <Link
+            to="/resume-builder"
+            className="hover:text-blue-600 py-3"
+          >
+            Resume
           </Link>
         </div>
 
@@ -119,32 +129,45 @@ function Navbar() {
 
       {menuOpen && (
         <div className="md:hidden bg-white border-t px-5 py-4 space-y-3">
-          <Link to="/" onClick={closeMenu} className="block font-semibold">
-            Home
-          </Link>
-
           <Link
-            to="/blog"
+            to="/"
             onClick={closeMenu}
             className="block font-semibold"
           >
-            Blog
+            Home
           </Link>
 
-          <p className="font-bold text-slate-700 pt-2">Academic Tools</p>
+          <p className="font-bold text-slate-700 pt-2">
+            Academic Tools
+          </p>
+
           {academicTools.map((item, index) => (
             <MobileToolLink key={index} item={item} />
           ))}
 
-          <p className="font-bold text-slate-700 pt-2">Image Tools</p>
+          <p className="font-bold text-slate-700 pt-2">
+            Image Tools
+          </p>
+
           {imageTools.map((item, index) => (
             <MobileToolLink key={index} item={item} />
           ))}
 
-          <p className="font-bold text-slate-700 pt-2">PDF Tools</p>
+          <p className="font-bold text-slate-700 pt-2">
+            PDF Tools
+          </p>
+
           {pdfTools.map((item, index) => (
             <MobileToolLink key={index} item={item} />
           ))}
+
+          <Link
+            to="/blog"
+            onClick={closeMenu}
+            className="block font-semibold pt-2"
+          >
+            Blog
+          </Link>
 
           <Link
             to="/resume-builder"
