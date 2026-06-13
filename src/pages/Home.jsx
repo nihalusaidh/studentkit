@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ToolCard from "../components/ToolCard";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [search, setSearch] = useState("");
@@ -101,30 +102,144 @@ function Home() {
     return text.includes(search.toLowerCase());
   });
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is ToolNest?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "ToolNest is a free online toolkit for students that includes academic calculators, PDF tools, image tools, and resume building tools.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Are ToolNest tools free?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, ToolNest tools are free to use and do not require login or registration.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can college students use ToolNest?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, ToolNest is designed for college, engineering, diploma, and university students.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What student tools are available on ToolNest?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "ToolNest includes CGPA Calculator, GPA Calculator, Attendance Calculator, Internal Marks Calculator, Resume Builder, image tools, and PDF tools.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does ToolNest work on mobile?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, ToolNest is mobile-friendly and works on phones, tablets, laptops, and desktops.",
+        },
+      },
+    ],
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "ToolNest",
+    url: "https://tools.nihalusaidh.com/",
+    description:
+      "Free online student tools, academic calculators, image tools, PDF tools, and resume builder.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://tools.nihalusaidh.com/?search={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "ToolNest",
+    url: "https://tools.nihalusaidh.com/",
+  };
+
   return (
     <>
       <Helmet>
-        <title>ToolNest - Free Student, Image and PDF Tools</title>
+        <title>
+          ToolNest - Free Student Tools, GPA, CGPA, PDF & Image Tools
+        </title>
 
         <meta
           name="description"
-          content="Free online student tools, image tools and PDF tools including GPA calculator, CGPA calculator, PDF converters and more."
+          content="ToolNest offers free online student tools including CGPA Calculator, GPA Calculator, Attendance Calculator, Internal Marks Calculator, Resume Builder, PDF tools, and image tools."
         />
+
+        <meta
+          name="keywords"
+          content="student tools, CGPA calculator, GPA calculator, attendance calculator, internal marks calculator, PDF tools, image tools, resume builder, ToolNest"
+        />
+
+        <link rel="canonical" href="https://tools.nihalusaidh.com/" />
+
+        <meta
+          property="og:title"
+          content="ToolNest - Free Student Tools and Online Calculators"
+        />
+
+        <meta
+          property="og:description"
+          content="Free academic calculators, PDF tools, image tools, and resume builder for college students."
+        />
+
+        <meta property="og:url" content="https://tools.nihalusaidh.com/" />
+        <meta property="og:type" content="website" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="ToolNest - Free Student Tools"
+        />
+        <meta
+          name="twitter:description"
+          content="Use free GPA, CGPA, attendance, internal marks, PDF, image, and resume tools."
+        />
+
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify(websiteSchema)}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
       </Helmet>
 
-      <div className="max-w-7xl mx-auto px-5">
+      <main className="max-w-7xl mx-auto px-5">
         <section className="py-24 text-center">
           <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-semibold">
             16+ Free Online Tools
           </span>
 
           <h1 className="text-5xl md:text-6xl font-bold mt-6 mb-6">
-            ToolNest
+            Free Student Tools for College & Engineering Students
           </h1>
 
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            All-in-One Toolkit for Students. Academic Calculators, Image Tools
-            and PDF Tools — completely free and browser based.
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-8">
+            ToolNest is an all-in-one free online toolkit for students. Use
+            academic calculators, CGPA Calculator, GPA Calculator, Attendance
+            Calculator, Internal Marks Calculator, Resume Builder, PDF tools,
+            and image tools directly in your browser.
           </p>
 
           <div className="mt-10 max-w-2xl mx-auto">
@@ -145,12 +260,12 @@ function Home() {
               Try Tools
             </a>
 
-            <a
-              href="/resume-builder"
+            <Link
+              to="/resume-builder"
               className="border px-8 py-4 rounded-xl font-semibold hover:bg-slate-50"
             >
               Resume Builder
-            </a>
+            </Link>
           </div>
         </section>
 
@@ -173,6 +288,18 @@ function Home() {
           <div className="bg-white p-6 rounded-2xl border text-center shadow-sm">
             <h2 className="text-4xl font-bold text-orange-600">Mobile</h2>
             <p className="text-slate-600 mt-2">Friendly</p>
+          </div>
+        </section>
+
+        <section className="mb-20">
+          <h2 className="text-3xl font-bold mb-6">
+            Popular Student Tools
+          </h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {academicTools.slice(0, 4).map((tool, index) => (
+              <ToolCard key={index} {...tool} />
+            ))}
           </div>
         </section>
 
@@ -231,6 +358,92 @@ function Home() {
           </>
         )}
 
+        <section className="mb-20 bg-white border rounded-2xl p-6 shadow-sm">
+          <h2 className="text-3xl font-bold mb-4">
+            Why Use ToolNest?
+          </h2>
+
+          <p className="text-slate-600 leading-7 mb-4">
+            ToolNest is built to help students complete everyday academic and
+            document tasks faster. Instead of visiting different websites for
+            GPA calculation, CGPA calculation, attendance tracking, internal
+            marks calculation, resume creation, PDF conversion, and image
+            compression, students can use all essential tools in one place.
+          </p>
+
+          <p className="text-slate-600 leading-7 mb-4">
+            The academic tools are especially useful for college and engineering
+            students who need to calculate semester GPA, overall CGPA, minimum
+            attendance percentage, internal marks, and required end semester
+            marks. These tools are simple, fast, mobile-friendly, and designed
+            for quick use before exams, assignments, interviews, and placement
+            preparation.
+          </p>
+
+          <p className="text-slate-600 leading-7">
+            ToolNest also includes browser-based image and PDF tools such as JPG
+            to PDF, PDF to JPG, Merge PDF, Split PDF, Rotate PDF, Remove PDF
+            Pages, Watermark PDF, Image Compressor, Image Converter, Image
+            Resize, and Image Crop. Most tools work directly in your browser and
+            are free to use.
+          </p>
+        </section>
+
+        <section className="mb-20 bg-white border rounded-2xl p-6 shadow-sm">
+          <h2 className="text-3xl font-bold mb-4">
+            ToolNest FAQs
+          </h2>
+
+          <div className="space-y-5 text-slate-600 leading-7">
+            <div>
+              <h3 className="font-bold text-slate-800">What is ToolNest?</h3>
+              <p>
+                ToolNest is a free online toolkit that provides student
+                calculators, PDF tools, image tools, and resume tools.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-slate-800">
+                Are ToolNest tools free?
+              </h3>
+              <p>
+                Yes. ToolNest tools are free to use and do not require login or
+                registration.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-slate-800">
+                Which student tools are available?
+              </h3>
+              <p>
+                ToolNest includes CGPA Calculator, GPA Calculator, Attendance
+                Calculator, Internal Marks Calculator, and Resume Builder.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-slate-800">
+                Can engineering students use ToolNest?
+              </h3>
+              <p>
+                Yes. ToolNest is useful for engineering, diploma, college, and
+                university students.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-slate-800">
+                Does ToolNest work on mobile?
+              </h3>
+              <p>
+                Yes. ToolNest works on mobile, tablet, laptop, and desktop.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section className="mb-20">
           <h2 className="text-3xl font-bold mb-6">Coming Soon</h2>
 
@@ -255,7 +468,7 @@ function Home() {
             </div>
           </div>
         </section>
-      </div>
+      </main>
     </>
   );
 }
