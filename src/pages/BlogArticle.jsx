@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { blogPosts } from "../data/blogPosts";
+import { blogPosts } from "./blogPosts";
 
 function BlogArticle() {
   const { slug } = useParams();
@@ -143,10 +143,7 @@ function BlogArticle() {
               <h2 className="text-2xl font-bold mb-3">{section.heading}</h2>
 
               {section.paragraphs.map((paragraph, pIndex) => (
-                <p
-                  key={pIndex}
-                  className="text-slate-600 leading-8 mb-4"
-                >
+                <p key={pIndex} className="text-slate-600 leading-8 mb-4">
                   {paragraph}
                 </p>
               ))}

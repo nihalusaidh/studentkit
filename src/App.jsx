@@ -26,6 +26,7 @@ import PdfToJpg from "./pages/PdfToJpg";
 import RemovePdfPages from "./pages/RemovePdfPages";
 import RotatePdf from "./pages/RotatePdf";
 import WatermarkPdf from "./pages/WatermarkPdf";
+
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
 
@@ -46,8 +47,14 @@ function App() {
 
         <Route path="/cgpa-calculator" element={<CGPACalculator />} />
         <Route path="/gpa-calculator" element={<GPACalculator />} />
-        <Route path="/internal-marks-calculator" element={<InternalCalculator />} />
-        <Route path="/attendance-calculator" element={<AttendanceCalculator />} />
+        <Route
+          path="/internal-marks-calculator"
+          element={<InternalCalculator />}
+        />
+        <Route
+          path="/attendance-calculator"
+          element={<AttendanceCalculator />}
+        />
         <Route path="/resume-builder" element={<ResumeBuilder />} />
 
         <Route path="/image-compressor" element={<ImageCompressor />} />
@@ -65,10 +72,10 @@ function App() {
         <Route path="/remove-pdf-pages" element={<RemovePdfPages />} />
         <Route path="/rotate-pdf" element={<RotatePdf />} />
         <Route path="/watermark-pdf" element={<WatermarkPdf />} />
+
+        {/* Blog Routes */}
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogArticle />} />
-
-        
       </Routes>
 
       <Footer />
