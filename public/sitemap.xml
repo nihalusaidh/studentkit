@@ -98,5 +98,40 @@
   <url>
     <loc>https://tools.nihalusaidh.com/watermark-pdf</loc>
   </url>
+  <url>
+  <loc>https://tools.nihalusaidh.com/blog</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://tools.nihalusaidh.com/blog/calculate-cgpa</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://tools.nihalusaidh.com/blog/gpa-vs-cgpa</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://tools.nihalusaidh.com/blog/75-attendance-rule</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://tools.nihalusaidh.com/blog/internal-marks-calculation</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://tools.nihalusaidh.com/blog/improve-gpa-cgpa</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
 
 </urlset>

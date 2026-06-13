@@ -7,8 +7,16 @@ function Navbar() {
   const academicTools = [
     { icon: "🎓", name: "CGPA Calculator", link: "/cgpa-calculator" },
     { icon: "📊", name: "GPA Calculator", link: "/gpa-calculator" },
-    { icon: "🧮", name: "Internal Calculator", link: "/internal-marks-calculator" },
-    { icon: "📅", name: "Attendance Calculator", link: "/attendance-calculator" },
+    {
+      icon: "🧮",
+      name: "Internal Calculator",
+      link: "/internal-marks-calculator",
+    },
+    {
+      icon: "📅",
+      name: "Attendance Calculator",
+      link: "/attendance-calculator",
+    },
   ];
 
   const imageTools = [
@@ -32,7 +40,7 @@ function Navbar() {
     <div className="relative group">
       <button className="py-3 hover:text-blue-600">{title} ▾</button>
 
-      <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+      <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
         <div className="bg-white border border-slate-200 rounded-xl shadow-xl w-72 p-3 max-h-[420px] overflow-y-auto">
           {items.map((item, index) => (
             <Link
@@ -88,6 +96,10 @@ function Navbar() {
           <Link to="/resume-builder" className="hover:text-blue-600 py-3">
             Resume
           </Link>
+
+          <Link to="/blog" className="hover:text-blue-600 py-3">
+            Blog
+          </Link>
         </div>
 
         <a
@@ -109,6 +121,14 @@ function Navbar() {
         <div className="md:hidden bg-white border-t px-5 py-4 space-y-3">
           <Link to="/" onClick={closeMenu} className="block font-semibold">
             Home
+          </Link>
+
+          <Link
+            to="/blog"
+            onClick={closeMenu}
+            className="block font-semibold"
+          >
+            Blog
           </Link>
 
           <p className="font-bold text-slate-700 pt-2">Academic Tools</p>

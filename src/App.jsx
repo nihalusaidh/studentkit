@@ -26,6 +26,8 @@ import PdfToJpg from "./pages/PdfToJpg";
 import RemovePdfPages from "./pages/RemovePdfPages";
 import RotatePdf from "./pages/RotatePdf";
 import WatermarkPdf from "./pages/WatermarkPdf";
+import Blog from "./pages/Blog";
+import BlogArticle from "./pages/BlogArticle";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -63,6 +65,10 @@ function App() {
         <Route path="/remove-pdf-pages" element={<RemovePdfPages />} />
         <Route path="/rotate-pdf" element={<RotatePdf />} />
         <Route path="/watermark-pdf" element={<WatermarkPdf />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogArticle />} />
+
+        
       </Routes>
 
       <Footer />
